@@ -36,11 +36,11 @@
                     </div>
                     <div class="col-md-5">
                         <label for="name" class="form-label">姓名</label>
-                        <input type="text" class="form-control" id="name" name="coach_name" placeholder="請輸入姓名">
+                        <input type="text" class="form-control" id="name" name="coach_name" placeholder="請輸入姓名" required>
                     </div>
                     <div class="col-md-5">
                         <label for="gender" class="form-label">性別</label>
-                        <select id="gender" name="genre_id" class="form-select" aria-label="Default select example">
+                        <select id="gender" name="genre_id" class="form-select" required aria-label="select example">
                             <option selected>請選擇性別</option>
                             <option value="1">男生</option>
                             <option value="2">女生</option>
@@ -48,20 +48,20 @@
                     </div>
                     <div class="col-md-5">
                         <label for="phone" class="form-label">電話</label>
-                        <input type="text" class="form-control" id="phone" name="coach_phone" placeholder="請輸入電話">
+                        <input type="text" class="form-control" id="phone" name="coach_phone" placeholder="請輸入電話" required>
                     </div>
                     <div class="col-md-5">
                         <label for="email" class="form-label">信箱</label>
-                        <input type="email" class="form-control" id="email" name="coach_email" placeholder="請輸入email">
+                        <input type="email" class="form-control" id="email" name="coach_email" placeholder="請輸入email" required>
                     </div>
                     <div class="col-md-5">
                         <label for="account" class="form-label">帳號</label>
-                        <input type="text" class="form-control" id="account" name="coach_account" placeholder="請輸入帳號">
+                        <input type="text" class="form-control" id="account" name="coach_account" placeholder="請輸入帳號" required>
                     </div>
                     <div class="col-md-5">
                         <label for="password" class="form-label">密碼</label>
                         <input type="password" class="form-control" id="password" name="coach_password"
-                               placeholder="請輸入密碼">
+                               placeholder="請輸入密碼" required>
                     </div>
                     <div class="col-10">
                         <label for="address" class="form-label">專長</label>

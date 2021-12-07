@@ -11,10 +11,32 @@ try {
     echo $e->getMessage();
 }
 
-if (isset($_GET["search"])) {
-    $search = $_GET["search"];
+//$sqlSearch = "SELECT coach_name, coach_account, coach_email FROM coach WHERE coach_name LIKE '{$_GET["search"]}'";
+//$stmtSearch=$db_host->prepare($sqlSearch);
+//$result=$db_host->query($sqlSearch);
+//$resultCount=$result->num_rows;
+//$stmtSearch->execute();
+//$data=$stmtSearch->fetchAll();
+//$num_rows = $result->fetchColumn();
+//if ($num_rows>0) {
+//    while ($row=$result->fatch_assoc()) {
+//        var_dump($row);
+//        echo "<br>";
+//    }
+//}
+
+if (isset($_POST["search"])) {
+    $search = $_POST["search"];
     $sql = "SELECT * FROM coach WHERE coach_name LIKE '%$search%'";
+}else {
+    $sql = "SELECT * FROM coach INNER JOIN genre ON coach.genre_id = genre.genre_id AND coach_valid=1";
 }
+
+//$stmt = $db_host->prepare($sql);
+//$stmt->execute();
+//$num_rows = $stmt->fetchColumn();
+//$data = $stmt->fetchAll();
+//var_dump($data);
 ?>
 <!doctype html>
 <html lang="en">
@@ -46,7 +68,7 @@ if (isset($_GET["search"])) {
                     <form action="coach.php" method="get">
                         <div class="d-flex">
                             <input class="form-control me-2" type="search" name="search" value="<?php if (isset($search)) echo $search; ?>">
-                            <button class="btn btn-primary text-nowrap">搜尋</button>
+                            <button class="btn btn-primary text-nowrap" type="submit">搜尋</button>
                         </div>
                     </form>
                 </div>
@@ -54,7 +76,7 @@ if (isset($_GET["search"])) {
             <article class="article col-lg-9 shadow-sm table-responsive">
                 <!--content-->
                 <div class="table-wrap">
-<!--                    --><?php //if ($coachCount > 0) : ?>
+                    <?php if ($data = $stmt->fetchAll() > 0): ?>
                         <table class="table table-control align-middle my-3">
                             <thead>
                                 <tr>
@@ -72,7 +94,9 @@ if (isset($_GET["search"])) {
                             </thead>
                             <tbody>
 <!--                                --><?php //while ($row = $result->fetch_assoc()) : ?>
-                                <?php foreach ($rows as $value): ?>
+                                <?php foreach ($rows as $value):
+                                ?>
+                                <?php  ?>
                                     <tr>
                                         <td>
                                             <a role="button" href="coach-examine.php?id=<?=$value["coach_id"]?>" class="btn btn-primary">查看</a>
@@ -112,15 +136,16 @@ if (isset($_GET["search"])) {
 <!--                                </li>-->
 <!--                            </ul>-->
 <!--                        </nav>-->
-<!--                    --><?php //else : ?>
-<!--                        沒有會員資料-->
-<!--                    --><?php //endif; ?>
+                    <?php else : ?>
+                        沒有會員資料
+                    <?php endif; ?>
                 </div>
 
             </article>
             <!--/content-->
         </div>
     </div>
+
 </body>
 
 </html>

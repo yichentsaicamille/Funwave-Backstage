@@ -4,9 +4,17 @@ $sql = "SELECT * FROM member WHERE valid=1";
 $result = $conn->query($sql);
 $memberCount = $result->num_rows;
 
+//關聯性別
+$sqlgenre = "SELECT * FROM genre";
+$resultgenre = $conn->query($sqlgenre);
+$genreArr = [];
+while ($row = $resultgenre->fetch_assoc()) {
+    $genreArr[$row["genre_id"]] = $row["gender"];
+}
+
 if (isset($_GET["search"])) {
     $search = $_GET["search"];
-    $sql = "SELECT * FROM member WHERE name LIKE '%$search%'";
+    $sql = "SELECT * FROM member WHERE member_name LIKE '%$search%'";
 }
 ?>
 <!doctype html>
@@ -63,20 +71,20 @@ if (isset($_GET["search"])) {
                                 <?php while ($row = $result->fetch_assoc()) : ?>
                                     <tr>
                                         <td>
-                                            <a role="button" href="member-examine.php?id=<?=$row["id"]?>" class="btn btn-primary">查看</a>
+                                            <a role="button" href="member-examine.php?id=<?=$row["member_id"]?>" class="btn btn-primary">查看</a>
                                         </td>
                                         <td>
-                                            <img class="cover-fit" src="images/<?= $row["photo"] ?>">
+                                            <img class="cover-fit" src="images/<?= $row["member_photo"] ?>">
                                         </td>
-                                        <td><?= $row["name"] ?></td>
-                                        <td><?= $row["gender"] ?></td>
-                                        <td><?= $row["phone"] ?></td>
-                                        <td><?= $row["email"] ?></td>
-                                        <td><?= $row["address"] ?></td>
-                                        <td><?= $row["created_at"] ?></td>
+                                        <td><?= $row["member_name"] ?></td>
+                                        <td><?= $genreArr[$row["genre_id"]] ?></td>
+                                        <td><?= $row["member_phone"] ?></td>
+                                        <td><?= $row["member_email"] ?></td>
+                                        <td><?= $row["member_address"] ?></td>
+                                        <td><?= $row["member_created_at"] ?></td>
                                         <td>
                                             <a role="button" href="" class="btn btn-danger">刪除</a>
-                                            <a role="button" href="member-edit.php?id=<?= $row["id"] ?>" class="btn btn-primary">修改</a>
+                                            <a role="button" href="member-edit.php?id=<?= $row["member_id"] ?>" class="btn btn-primary">修改</a>
                                         </td>
                                     </tr>
                                 <?php endwhile; ?>

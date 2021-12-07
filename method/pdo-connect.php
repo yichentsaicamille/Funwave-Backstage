@@ -1,4 +1,5 @@
 <?php
+session_start();
 $servername="localhost";
 $username="funwave";
 $password="20211013";
