@@ -1,4 +1,4 @@
-<!--是否需要在資料表order-detail添加會員編號欄位-->
+<!--是否需要在資料表order-detail添加會員編號欄位。圖片路徑待添加-->
 
 <?php
 require_once("./method/pdo-connect.php");
@@ -52,11 +52,11 @@ try {
         <article class="article col-lg-9 shadow-sm table-responsive content-group">
             <!--content-->
             <div class="table-wrap">
-                <table class="table table-bordered table-sm my-3">
+                <table class="table table-bordered table-sm my-3 text-center">
                     <thead>
                     <tr>
                         <th>訂單編號</th>
-                        <!--                    <th>會員編號</th>-->
+                        <!--<th>會員編號</th>-->
                         <th>產品編號</th>
                         <th>產品名稱</th>
                         <th>產品圖片</th>
@@ -71,7 +71,7 @@ try {
                         ?>
                         <tr>
                             <td><?= $order_id ?></td>
-                            <!--                    <td>--><? //=$member_id?><!--</td>-->
+<!--                            <td>--><?// $member_id?><!--</td>-->
                             <td><?= $value["product_id"] ?></td>
                             <td><?= $value["product_name"] ?></td>
                             <td><?= $value["product_image"] ?></td>

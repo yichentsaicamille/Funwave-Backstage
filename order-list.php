@@ -1,6 +1,5 @@
 <!--還沒做分頁、會員編號篩選、付款狀態篩選?訂單狀態篩選?。區間篩選待改-->
 
-<h1>嘗試github</h1>
 <?php
 require_once("./method/pdo-connect.php");
 //$order_id = $_GET["order_id"]; //order id
@@ -94,7 +93,6 @@ if (empty($_GET["order_id"]) && $order_id !== "0") {
         body {
             font-size: 15px;
         }
-
         .form-control {
             width: 200px;
         }
@@ -142,6 +140,8 @@ if (empty($_GET["order_id"]) && $order_id !== "0") {
                 <table class="table table-bordered m-3 text-center">
                     <thead>
                     <tr class="text-nowrap">
+                        <th>查看內容</th>
+                        <th>修改訂單</th>
                         <th>訂單編號</th>
                         <th>會員編號</th>
                         <th>訂單總金額</th>
@@ -154,13 +154,14 @@ if (empty($_GET["order_id"]) && $order_id !== "0") {
                         <th>收件超商門市</th>
                         <th>訂單狀態</th>
                         <th>訂單日期</th>
-                        <th>查看詳細內容</th>
-                        <th>修改訂單資訊</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($rowOrderList as $value): ?>
                         <tr class="text-nowrap">
+                            <td><a href="order-detail.php?order_id=<?= $value["id"] ?>"><i class="fas fa-search"></i></a></td>
+                            <td><a href="order-edit.php?order_id=<?= $value["id"] ?>"><i class="fas fa-edit"></i></a> &nbsp/&nbsp
+                                <a onclick="javascript:return del();" href="./method/doDeleteOrder.php?order_id=<?= $value["id"] ?>"><i class="fas fa-trash-alt"></i></a></td>
                             <td><?= $value["id"] ?></td>
                             <td><?= $value["member_id"] ?></td>
                             <td class="text-end">$ <?= $value["amount"] ?></td>
@@ -173,10 +174,6 @@ if (empty($_GET["order_id"]) && $order_id !== "0") {
                             <td><?= $value["convenient_store"] ?></td>
                             <td><?= $value["status"] ?></td>
                             <td><?= $value["order_time"] ?></td>
-                            <td><a href="order-detail.php?order_id=<?= $value["id"] ?>">查看詳細內容</a></td>
-                            <td><a href="order-edit.php?order_id=<?= $value["id"] ?>"><i class="fas fa-edit"></i></a> /
-                                <a href="./method/doDeleteOrder.php?order_id=<?= $value["id"] ?>"><i
-                                            class="fas fa-trash-alt"></i></a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -200,5 +197,15 @@ if (empty($_GET["order_id"]) && $order_id !== "0") {
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
 
+    <script>
+        function del() {
+            var msg = "您確定要刪除此筆訂單嗎？";
+            if (confirm(msg)==true){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    </script>
 </body>
 </html>

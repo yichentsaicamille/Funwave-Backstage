@@ -56,40 +56,43 @@ try{
                                 <div class="col top-ipt-group">
                                     <div class="mb-3">
                                         <label class="mb-2" for="">訂單編號</label>
-                                        <input id="" type="number" name="order_id" class="form-control" value="<?=$value["id"]?>" readonly>
+                                        <input id="" type="text" name="order_id" class="form-control" value="<?=$value["id"]?>" aria-label="readonly input" readonly>
                                     </div>
                                 </div>
                                 <div class="col top-ipt-group mx-3">
                                     <div class="mb-3">
                                         <label class="mb-2" for="">會員編號</label>
-                                        <input id="" type="number" name="member_id" class="form-control" value="<?=$value["member_id"]?>" readonly>
+                                        <input id="" type="text" name="member_id" class="form-control" value="<?=$value["member_id"]?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col top-ipt-group">
                                     <div class="mb-3">
                                         <label class="mb-2" for="">訂單總金額</label>
-                                        <input id="" type="number" name="amount" class="form-control" value="<?=$value["amount"]?>" readonly>
+                                        <input id="" type="text" name="amount" class="form-control" value="<?=$value["amount"]?>" readonly>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-5 mb-4">
+                            <div class="col-md-4 mb-4">
                                 <label class="mb-2" for="receiver">收件人姓名</label>
                                 <input id="receiver" type="text" name="receiver" class="form-control" value="<?=$value["receiver"]?>" required>
                             </div>
-                            <div class="col-md-5 mb-4">
+                            <div class="col-md-6 mb-4">
                                 <label class="mb-2" for="receiver_phone">收件人電話</label>
                                 <input id="receiver_phone" type="number" name="receiver_phone" class="form-control" value="<?=$value["receiver_phone"]?>" required>
                             </div>
-                            <!--                    依送貨方式，對應顯現收件人地址or超商門市-->
-                            <div class="col-md-5 mb-4">
+                            <!--依送貨方式，對應顯現收件人地址or超商門市-->
+                            <div class="col-md-4 mb-4">
                                 <div class="mb-2">送貨方式</div>
                                 <select class="form-select" aria-label="delivery select" name="delivery" id="delivery_select">
                                     <option value="#delivery1" <?php if ($value["delivery"]==="宅配到府")echo "selected" ?>>宅配到府</option>
                                     <option value="#delivery2" <?php if ($value["delivery"]==="超商取貨")echo "selected" ?>>超商取貨</option>
                                 </select>
                             </div>
-
-                            <div class="col-md-5 mb-4" id="delivery2">
+                            <div class="col-md-6 mb-4" id="delivery1">
+                                <label class="mb-2" for="address">收件人地址</label>
+                                <input id="address" type="text" name="address" class="form-control" value="<?=$value["address"]?>" required>
+                            </div>
+                            <div class="col-md-6 mb-4" id="delivery2">
                                 <div class="mb-2">超商門市</div>
                                 <select class="form-select" aria-label="convenient_store select" name="convenient_store">
                                     <option value="一零一門市" <?php if ($value["convenient_store"]==="一零一門市")echo "selected" ?>>一零一門市</option>
@@ -100,14 +103,14 @@ try{
                                     <option value="東大門市" <?php if ($value["convenient_store"]==="東大門市")echo "selected" ?>>東大門市</option>
                                 </select>
                             </div>
-                            <div class="col-md-5 mb-4">
+                            <div class="col-md-4 mb-4">
                                 <div class="mb-2">付款方式</div>
                                 <select class="form-select" aria-label="payment select" name="payment">
                                     <option value="信用卡" <?php if ($value["payment"]==="信用卡")echo "selected" ?>>信用卡</option>
                                     <option value="貨到付款" <?php if ($value["payment"]==="貨到付款")echo "selected" ?>>貨到付款</option>
                                 </select>
                             </div>
-                            <div class="col-md-5 mb-4">
+                            <div class="col-md-6 mb-4">
                                 <div class="mb-2">付款狀態</div>
                                 <select class="form-select" aria-label="payment_status select" name="payment_status">
                                     <option value="未付款" <?php if ($value["payment_status"]==="未付款")echo "selected" ?>>未付款</option>
@@ -116,7 +119,7 @@ try{
                                     <option value="已退款" <?php if ($value["payment_status"]==="已退款")echo "selected" ?>>已退款</option>
                                 </select>
                             </div>
-                            <div class="col-md-5 mb-4">
+                            <div class="col-md-10 mb-4">
                                 <div class="mb-2">訂單狀態</div>
                                 <select class="form-select" aria-label="status select" name="status">
                                     <option value="訂單處理中" <?php if ($value["status"]==="訂單處理中")echo "selected" ?>>訂單處理中</option>
@@ -124,11 +127,7 @@ try{
                                     <option value="訂單已取消" <?php if ($value["status"]==="訂單已取消")echo "selected" ?>>訂單已取消</option>
                                 </select>
                             </div>
-                            <div class="col-md-10 mb-4" id="delivery1">
-                                <label class="mb-2" for="address">收件人地址</label>
-                                <input id="address" type="text" name="address" class="form-control" value="<?=$value["address"]?>" required>
-                            </div>
-                            <div class="col-md-10 d-flex justify-content-end">
+                            <div class="col-md-10 d-flex justify-content-center">
                                 <button class="btn btn-primary" type="submit">送出更新</button>
                             </div>
                         </div>
