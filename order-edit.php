@@ -1,5 +1,3 @@
-<!--還沒做欄位檢查-->
-
 <?php
 require_once ("./method/pdo-connect.php");
 
@@ -128,7 +126,7 @@ try{
                                 </select>
                             </div>
                             <div class="col-md-10 d-flex justify-content-center">
-                                <button class="btn btn-primary" type="submit">送出更新</button>
+                                <button id="bt" class="btn btn-primary" type="submit">送出更新</button>
                             </div>
                         </div>
 
@@ -163,6 +161,13 @@ try{
             $('div[id^="delivery"]').hide();
             $(deliveryValue).show();
         });
+
+        window.onload=function(){
+            var obt=document.getElementById("bt");
+            obt.onclick=function(){
+                alert("訂單修改已完成!");
+            }
+        }
     </script>
 </body>
 </html>

@@ -1,5 +1,3 @@
-<!--    待研究modal跳出已成功刪除。好像是jQuery 可以看看filtering、event-->
-
 <?php
 require_once ("pdo-connect.php");
 
@@ -15,7 +13,7 @@ try{
     $stmtOrderList->execute();
     $orderCount=$stmtOrderList->rowCount();
      echo "資料移除完成";
-//    header("location: order-edit.php?order_id=".$order_id);
+    header("location: ../order-list.php");
 }catch (PDOException $e){
     echo "資料移除錯誤: ".$e->getMessage();
 }

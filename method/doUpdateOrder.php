@@ -1,5 +1,3 @@
-<!--    待研究modal跳出已成功修改。好像是jQuery 可以看看filtering、event-->
-
 <?php
 require_once ("pdo-connect.php");
 
@@ -27,7 +25,7 @@ try{
     $stmtOrderList->execute();
     $orderCount=$stmtOrderList->rowCount();
      echo "修改資料完成";
-//    header("location: order-edit.php?order_id=".$order_id);
+    header("location: ../order-list.php");
 }catch (PDOException $e){
     echo "修改資料錯誤: ".$e->getMessage();
 }
