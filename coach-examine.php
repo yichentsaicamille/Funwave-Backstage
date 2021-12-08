@@ -55,7 +55,7 @@ try {
                     <input type="hidden" name="coach_id" value="<?=$row["coach_id"]?>">
                     <div class="col-md-5 d-flex justify-content-center align-items-center">
                         <div>
-                            <img class="photo-img cover-fit" src="images/<?=$row["coach_photo"]?>">
+                            <img class="photo-img cover-fit" src="images/coach/<?=$row["coach_photo"]?>">
                         </div>
                     </div>
                     <div class="col-md-5">

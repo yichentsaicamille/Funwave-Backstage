@@ -2,10 +2,10 @@
     box-sizing: border-box;
 }
 :root {
-    --green-color: #77CB7;
+    --green-color: #77CFB7;
     --blue-color: #81D7D3;
     --pink-color: #E96A97;
-    --gray-color: #98A0A5;
+    --gray-color: #dee2e6;
     --orange-color: #FF7F6A;
 }
 .cover-fit{
