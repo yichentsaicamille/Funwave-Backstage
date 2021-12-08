@@ -3,8 +3,15 @@
 <!--區間篩選待加js判斷star<end-->
 <!--form換頁篩選ssr，js ssr-->
 
+
+<!--"訂單編號"篩選是單獨的。-->
+<!--"時間區間"篩選可以是單獨的。-->
+<!--"訂單狀態"篩選可以是單獨的。-->
+<!--"訂單狀態"能再篩選"時間區間"-->
+<!--"時間區間"不能再篩選"訂單狀態"-->
 <?php
 require_once("./method/pdo-connect.php");
+$MaxEndDate = date("Y/m/d");
 
 //搜尋：訂單編號
 if (isset($_GET["order_id"])) {
@@ -50,7 +57,7 @@ if (empty($_GET["order_id"]) && $order_id !== "0")  {
                 echo "$endDate";
             }else{
                 echo "抓到";
-                $endDate = date("Y/m/d");
+                $endDate = $MaxEndDate;
             }
             $sqlOrderList = "SELECT * FROM order_list WHERE DATE(order_time) BETWEEN ? AND ? ORDER BY id ASC";
             $stmtOrderList = $db_host->prepare($sqlOrderList);
@@ -71,7 +78,7 @@ if (empty($_GET["order_id"]) && $order_id !== "0")  {
                 echo "$endDate";
             }else{
                 echo "抓到";
-                $endDate = date("Y/m/d");
+                $endDate = $MaxEndDate;
             }
             $status=$_GET["status"];
             $sqlOrderList = "SELECT * FROM order_list WHERE status='$status' AND DATE(order_time) BETWEEN ? AND ? ORDER BY id ASC";
@@ -109,7 +116,7 @@ if (isset($_GET["status"])){
                 echo "$endDate";
             }else{
                 echo "抓到";
-                $endDate = date("Y/m/d");
+                $endDate = $MaxEndDate;
             }
             $sqlOrderList = "SELECT * FROM order_list WHERE status='$status' AND DATE(order_time) BETWEEN ? AND ? ORDER BY id ASC";
             $stmtOrderList = $db_host->prepare($sqlOrderList);
@@ -125,8 +132,12 @@ if (isset($_GET["status"])){
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
+}
 // 篩選訂單狀態後，網址仍有status，為isset()，但empty()
-}if(empty($_GET["status"])){
+//如果網址存在訂單編號，不繼續檢視訂單狀態的empty()
+if (isset($_GET["order_id"])){
+
+}else if(empty($_GET["status"])){
     $status=$_GET["status"];
     $sqlOrderList = "SELECT * FROM order_list ORDER BY id ASC";
     $stmtOrderList = $db_host->prepare($sqlOrderList);
@@ -143,7 +154,7 @@ if (isset($_GET["status"])){
                 echo "$endDate";
             }else{
                 echo "抓到";
-                $endDate = date("Y/m/d");
+                $endDate = $MaxEndDate;
             }
             $sqlOrderList = "SELECT * FROM order_list WHERE DATE(order_time) BETWEEN ? AND ? ORDER BY id ASC";
             $stmtOrderList = $db_host->prepare($sqlOrderList);
@@ -164,6 +175,26 @@ if (isset($_GET["status"])){
 
 //付款狀態篩選
 
+if (isset($_GET["p"])) {
+    $p = $_GET["p"];
+} else {
+    $p = 1;
+}
+$pageItems = 6;
+$startItem = ($p - 1) * $pageItems;
+$pageCount = $orderCount / $pageItems; //頁數
+$pageR = $orderCount % $pageItems; //餘數
+$startNo=($p-1)*$pageItems+1; //第二頁第一筆
+$endNo=$p*$pageItems;
+if ($pageR != 0) {
+    $pageCount = ceil($pageCount); //如果餘數不為0，則無條件進位
+    if($pageCount==$p){
+        $endNo=$endNo-($pageItems-$pageR);
+    }
+}
+//    設定一次要顯示的內容
+$sql = "SELECT * FROM products WHERE valid=1 ORDER BY id LIMIT $startItem, $pageItems";
+
 ?>
 
 
@@ -181,7 +212,7 @@ if (isset($_GET["status"])){
             font-size: 15px;
         }
         .form-control {
-            width: 200px;
+            width: 140px;
         }
     </style>
 </head>
@@ -197,12 +228,12 @@ if (isset($_GET["status"])){
         <div class="col-lg-9 shadow-sm button-group">
             <div class="d-flex justify-content-between">
                 <div class="pt-2">
-                    <a role="button" class="btn btn-primary" href="order-list.php"><i class="fas fa-home"></i> 回列表</a>
+                    <a role="button" class="btn btn-primary" href="order-list.php"><i class="fas fa-home"></i> 回起始列表</a>
                 </div>
                 <form action="order-list.php" method="get">
                     <div class="d-flex justify-content-end align-items-center pt-2">
                         <div class="d-flex align-items-center">
-                            <label for="order_id" class="d-block">訂單編號篩選</label>
+                            <label for="order_id" class="d-block me-0">訂單編號篩選</label>
                             <div class="me-2"></div>
                             <input type="number" class="form-control me-2" id="order_id" name="order_id"
                                    value="<?= $order_id ?>">
@@ -211,39 +242,17 @@ if (isset($_GET["status"])){
                     </div>
                 </form>
             </div>
-<!--                <div class="d-flex justify-content-end align-items-center pt-2">-->
-<!--                    <form action="order-list.php" method="get">-->
-<!--                        <div class="d-flex align-items-center">-->
-<!--                            <label for="order_id" class="d-block">訂單編號篩選</label>-->
-<!--                            <div class="me-2"></div>-->
-<!--                            <input type="number" class="form-control me-2" id="order_id" name="order_id"-->
-<!--                                   value="--><?//= $order_id ?><!--">-->
-<!--                            <button type="submit" class="btn btn-primary text-nowrap">篩選</button>-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
-            <form action="order-list.php" method="get">
-                <div class="d-flex justify-content-end align-items-center pt-2">
-                    <div class="d-flex align-items-center">
-                        <label for="order_id" class="d-block">訂單編號篩選</label>
-                        <div class="me-2"></div>
-                        <input type="number" class="form-control me-2" id="order_id" name="order_id"
-                               value="<?= $order_id ?>">
-                        <button type="submit" class="btn btn-primary text-nowrap">篩選</button>
-                    </div>
-                </div>
-            </form>
             <form action="order-list.php" method="get">
                     <div class="d-flex justify-content-end align-items-center pt-2">
-                        <label for="status" class="d-block">訂單狀態</label>
-                        <div class="me-2 mt-2">
-                            <select id="status" class="form-select" aria-label="status select" name="status">
-                                <option value="訂單處理中" <?php if ($status==="訂單處理中")echo "selected" ?>>訂單處理中</option>
-                                <option value="訂單已完成" <?php if ($status==="訂單已完成")echo "selected" ?>>訂單已完成</option>
-                                <option value="訂單已取消" <?php if ($status==="訂單已取消")echo "selected" ?>>訂單已取消</option>
-                            </select>
-                        </div>
-                        <div class="mt-2">
+                        <div class="d-flex align-items-center">
+                            <label for="status" class="d-block me-2">訂單狀態</label>
+                            <div class="me-2">
+                                <select id="status" class="form-select me-2" aria-label="status select" name="status">
+                                    <option value="訂單處理中" <?php if ($status==="訂單處理中")echo "selected" ?>>訂單處理中</option>
+                                    <option value="訂單已完成" <?php if ($status==="訂單已完成")echo "selected" ?>>訂單已完成</option>
+                                    <option value="訂單已取消" <?php if ($status==="訂單已取消")echo "selected" ?>>訂單已取消</option>
+                                </select>
+                            </div>
                             <button type="submit" class="btn btn-primary text-nowrap">篩選</button>
                         </div>
                     </div>
