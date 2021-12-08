@@ -1,7 +1,6 @@
 <!--還沒做分頁(10筆一頁)、會員編號篩選。-->
 <!--還沒做共幾筆-->
 <!--區間篩選待加js判斷star<end-->
-<!--訂單編號跟區間是獨立的，一個訂單只會有一個時間。狀態跟區間可以合著。做一個清除篩選的按鈕-->
 <!--form換頁篩選ssr，js ssr-->
 
 <?php
@@ -42,9 +41,17 @@ if (empty($_GET["order_id"]) && $order_id !== "0")  {
         $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
         $orderCount = $stmtOrderList->rowCount();
         echo "empty_order"."<br>";
+        // 檢查是否有區間篩選
         if (isset($_GET["startDate"])) {
             $startDate = $_GET["startDate"];
-            $endDate = $_GET["endDate"];
+            if (isset($_GET["endDate"]) && $_GET["endDate"]!==""){
+                $endDate = $_GET["endDate"];
+                var_dump($endDate);
+                echo "$endDate";
+            }else{
+                echo "抓到";
+                $endDate = date("Y/m/d");
+            }
             $sqlOrderList = "SELECT * FROM order_list WHERE DATE(order_time) BETWEEN ? AND ? ORDER BY id ASC";
             $stmtOrderList = $db_host->prepare($sqlOrderList);
             try {
@@ -55,9 +62,17 @@ if (empty($_GET["order_id"]) && $order_id !== "0")  {
             } catch (PDOException $e) {
                 echo $e->getMessage();
             }
+        //檢查是否有區間篩選及訂單狀態篩選
         }else if(isset($_GET["startDate"]) && isset($_GET["status"])) {
             $startDate = $_GET["startDate"];
-            $endDate = $_GET["endDate"];
+            if (isset($_GET["endDate"]) && $_GET["endDate"]!==""){
+                $endDate = $_GET["endDate"];
+                var_dump($endDate);
+                echo "$endDate";
+            }else{
+                echo "抓到";
+                $endDate = date("Y/m/d");
+            }
             $status=$_GET["status"];
             $sqlOrderList = "SELECT * FROM order_list WHERE status='$status' AND DATE(order_time) BETWEEN ? AND ? ORDER BY id ASC";
             $stmtOrderList = $db_host->prepare($sqlOrderList);
@@ -85,9 +100,17 @@ if (isset($_GET["status"])){
         $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
         $orderCount = $stmtOrderList->rowCount();
         echo "status"."<br>";
+        // 檢查是否有區間篩選
         if (isset($_GET["startDate"])) {
             $startDate = $_GET["startDate"];
-            $endDate = $_GET["endDate"];
+            if (isset($_GET["endDate"]) && $_GET["endDate"]!==""){
+                $endDate = $_GET["endDate"];
+                var_dump($endDate);
+                echo "$endDate";
+            }else{
+                echo "抓到";
+                $endDate = date("Y/m/d");
+            }
             $sqlOrderList = "SELECT * FROM order_list WHERE status='$status' AND DATE(order_time) BETWEEN ? AND ? ORDER BY id ASC";
             $stmtOrderList = $db_host->prepare($sqlOrderList);
             try {
@@ -102,6 +125,7 @@ if (isset($_GET["status"])){
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
+// 篩選訂單狀態後，網址仍有status，為isset()，但empty()
 }if(empty($_GET["status"])){
     $status=$_GET["status"];
     $sqlOrderList = "SELECT * FROM order_list ORDER BY id ASC";
@@ -113,7 +137,14 @@ if (isset($_GET["status"])){
         echo "empty_status"."<br>";
         if (isset($_GET["startDate"])) {
             $startDate = $_GET["startDate"];
-            $endDate = $_GET["endDate"];
+            if (isset($_GET["endDate"]) && $_GET["endDate"]!==""){
+                $endDate = $_GET["endDate"];
+                var_dump($endDate);
+                echo "$endDate";
+            }else{
+                echo "抓到";
+                $endDate = date("Y/m/d");
+            }
             $sqlOrderList = "SELECT * FROM order_list WHERE DATE(order_time) BETWEEN ? AND ? ORDER BY id ASC";
             $stmtOrderList = $db_host->prepare($sqlOrderList);
             try {
@@ -164,6 +195,22 @@ if (isset($_GET["status"])){
         </aside>
         <!--/menu-->
         <div class="col-lg-9 shadow-sm button-group">
+            <div class="d-flex justify-content-between">
+                <div class="pt-2">
+                    <a role="button" class="btn btn-primary" href="order-list.php"><i class="fas fa-home"></i> 回列表</a>
+                </div>
+                <form action="order-list.php" method="get">
+                    <div class="d-flex justify-content-end align-items-center pt-2">
+                        <div class="d-flex align-items-center">
+                            <label for="order_id" class="d-block">訂單編號篩選</label>
+                            <div class="me-2"></div>
+                            <input type="number" class="form-control me-2" id="order_id" name="order_id"
+                                   value="<?= $order_id ?>">
+                            <button type="submit" class="btn btn-primary text-nowrap">篩選</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 <!--                <div class="d-flex justify-content-end align-items-center pt-2">-->
 <!--                    <form action="order-list.php" method="get">-->
 <!--                        <div class="d-flex align-items-center">-->
@@ -261,6 +308,12 @@ if (isset($_GET["status"])){
                     </tbody>
                 </table>
             </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="order-list.php">1</a></li>
+                </ul>
+            </nav>
+        </article>
     </div>
 </div>
 
