@@ -1,5 +1,6 @@
-<!--還沒做分頁(10筆一頁)、會員編號篩選。-->
+<!--還沒做會員編號篩選。-->
 <!--還沒做共幾筆-->
+<!--整份會有分頁，目前篩選先將分頁移除-->
 <!--區間篩選待加js判斷star<end-->
 <!--form換頁篩選ssr，js ssr-->
 
@@ -9,9 +10,10 @@
 <!--"訂單狀態"篩選可以是單獨的。-->
 <!--"訂單狀態"能再篩選"時間區間"-->
 <!--"時間區間"不能再篩選"訂單狀態"-->
+
 <?php
 require_once("./method/pdo-connect.php");
-$MaxEndDate = date("Y/m/d");
+$MaxEndDate = date("Y/m/d"); //可以調整區間預設的$endDate
 
 //搜尋：訂單編號
 if (isset($_GET["order_id"])) {
@@ -37,6 +39,33 @@ if (isset($_GET["order_id"])) {
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
+    //分頁
+    if (isset($_GET["p"])) {
+        $p = $_GET["p"];
+    } else {
+        $p = 1;
+    }
+    $pageItems = 8;
+    $startItem = ($p - 1) * $pageItems;
+    $pageCount = $orderCount / $pageItems; //頁數(可能非整數，要再下條件)
+    $pageR = $orderCount % $pageItems; //餘數
+    $startNo=($p-1)*$pageItems+1; //第二頁第一筆
+    $endNo=$p*$pageItems;
+    if ($pageR != 0) {
+        $pageCount = ceil($pageCount); //如果餘數不為0，則無條件進位 3
+        if($pageCount==$p){
+            $endNo=$endNo-($pageItems-$pageR);
+        }
+    }
+    $sqlOrderList = "SELECT * FROM order_list ORDER BY id ASC LIMIT $startItem, $pageItems";
+    $stmtOrderList = $db_host->prepare($sqlOrderList);
+    try {
+        $stmtOrderList->execute();
+        $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
+        $orderCount = $stmtOrderList->rowCount();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
 }
 
 //    篩選訂單編號後，清除篩選要顯示完整清單！empty() 但非0
@@ -48,13 +77,38 @@ if (empty($_GET["order_id"]) && $order_id !== "0")  {
         $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
         $orderCount = $stmtOrderList->rowCount();
         echo "empty_order"."<br>";
+        //分頁
+        if (isset($_GET["p"])) {
+            $p = $_GET["p"];
+        } else {
+            $p = 1;
+        }
+        $pageItems = 8;
+        $startItem = ($p - 1) * $pageItems;
+        $pageCount = $orderCount / $pageItems; //頁數(可能非整數，要再下條件)
+        $pageR = $orderCount % $pageItems; //餘數
+        $startNo=($p-1)*$pageItems+1; //第二頁第一筆
+        $endNo=$p*$pageItems;
+        if ($pageR != 0) {
+            $pageCount = ceil($pageCount); //如果餘數不為0，則無條件進位 3
+            if($pageCount==$p){
+                $endNo=$endNo-($pageItems-$pageR);
+            }
+        }
+        $sqlOrderList = "SELECT * FROM order_list ORDER BY id ASC LIMIT $startItem, $pageItems";
+        $stmtOrderList = $db_host->prepare($sqlOrderList);
+        try {
+            $stmtOrderList->execute();
+            $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
+            $orderCount = $stmtOrderList->rowCount();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
         // 檢查是否有區間篩選
         if (isset($_GET["startDate"])) {
             $startDate = $_GET["startDate"];
             if (isset($_GET["endDate"]) && $_GET["endDate"]!==""){
                 $endDate = $_GET["endDate"];
-                var_dump($endDate);
-                echo "$endDate";
             }else{
                 echo "抓到";
                 $endDate = $MaxEndDate;
@@ -74,8 +128,6 @@ if (empty($_GET["order_id"]) && $order_id !== "0")  {
             $startDate = $_GET["startDate"];
             if (isset($_GET["endDate"]) && $_GET["endDate"]!==""){
                 $endDate = $_GET["endDate"];
-                var_dump($endDate);
-                echo "$endDate";
             }else{
                 echo "抓到";
                 $endDate = $MaxEndDate;
@@ -107,6 +159,7 @@ if (isset($_GET["status"])){
         $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
         $orderCount = $stmtOrderList->rowCount();
         echo "status"."<br>";
+        $pageCount = 0;  //非正確之道！暫時如此！不顯示頁碼
         // 檢查是否有區間篩選
         if (isset($_GET["startDate"])) {
             $startDate = $_GET["startDate"];
@@ -133,8 +186,9 @@ if (isset($_GET["status"])){
         echo $e->getMessage();
     }
 }
-// 篩選訂單狀態後，網址仍有status，為isset()，但empty()
-//如果網址存在訂單編號，不繼續檢視訂單狀態的empty()
+
+// 篩選status後，網址仍有status，為isset()，但empty()
+//如果網址存在order_id，不繼續檢視status的empty()
 if (isset($_GET["order_id"])){
 
 }else if(empty($_GET["status"])){
@@ -146,6 +200,34 @@ if (isset($_GET["order_id"])){
         $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
         $orderCount = $stmtOrderList->rowCount();
         echo "empty_status"."<br>";
+        //分頁
+        if (isset($_GET["p"])) {
+            $p = $_GET["p"];
+        } else {
+            $p = 1;
+        }
+        $pageItems = 8;
+        $startItem = ($p - 1) * $pageItems;
+        $pageCount = $orderCount / $pageItems; //頁數(可能非整數，要再下條件)
+        $pageR = $orderCount % $pageItems; //餘數
+        $startNo=($p-1)*$pageItems+1; //第二頁第一筆
+        $endNo=$p*$pageItems;
+        if ($pageR != 0) {
+            $pageCount = ceil($pageCount); //如果餘數不為0，則無條件進位 3
+            if($pageCount==$p){
+                $endNo=$endNo-($pageItems-$pageR);
+            }
+        }
+        $sqlOrderList = "SELECT * FROM order_list ORDER BY id ASC LIMIT $startItem, $pageItems";
+        $stmtOrderList = $db_host->prepare($sqlOrderList);
+        try {
+            $stmtOrderList->execute();
+            $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
+            $orderCount = $stmtOrderList->rowCount();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        // 檢查是否有區間篩選
         if (isset($_GET["startDate"])) {
             $startDate = $_GET["startDate"];
             if (isset($_GET["endDate"]) && $_GET["endDate"]!==""){
@@ -158,6 +240,7 @@ if (isset($_GET["order_id"])){
             }
             $sqlOrderList = "SELECT * FROM order_list WHERE DATE(order_time) BETWEEN ? AND ? ORDER BY id ASC";
             $stmtOrderList = $db_host->prepare($sqlOrderList);
+            $pageCount = 0;  //非正確之道！暫時如此！不顯示頁碼
             try {
                 $stmtOrderList->execute([$startDate, $endDate]);
                 $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
@@ -171,29 +254,6 @@ if (isset($_GET["order_id"])){
         echo $e->getMessage();
     }
 }
-
-
-//付款狀態篩選
-
-if (isset($_GET["p"])) {
-    $p = $_GET["p"];
-} else {
-    $p = 1;
-}
-$pageItems = 6;
-$startItem = ($p - 1) * $pageItems;
-$pageCount = $orderCount / $pageItems; //頁數
-$pageR = $orderCount % $pageItems; //餘數
-$startNo=($p-1)*$pageItems+1; //第二頁第一筆
-$endNo=$p*$pageItems;
-if ($pageR != 0) {
-    $pageCount = ceil($pageCount); //如果餘數不為0，則無條件進位
-    if($pageCount==$p){
-        $endNo=$endNo-($pageItems-$pageR);
-    }
-}
-//    設定一次要顯示的內容
-$sql = "SELECT * FROM products WHERE valid=1 ORDER BY id LIMIT $startItem, $pageItems";
 
 ?>
 
@@ -317,11 +377,15 @@ $sql = "SELECT * FROM products WHERE valid=1 ORDER BY id LIMIT $startItem, $page
                     </tbody>
                 </table>
             </div>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                        <li class="page-item"><a class="page-link" href="order-list.php">1</a></li>
-                </ul>
-            </nav>
+            <?php if(isset($p)): ?>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <?php for($i=1; $i<$pageCount+1; $i++): ?>
+                            <li class="page-item <?php if($p==$i)echo "active" ?>"><a class="page-link" href="order-list.php?p=<?=$i?>"><?=$i?></a></li>
+                        <?php endfor; ?>
+                    </ul>
+                </nav>
+            <?php endif; ?>
         </article>
     </div>
 </div>
