@@ -1,22 +1,7 @@
 <?php
 require_once("./method/pdo-connect.php");
-//$sql = "SELECT * FROM coach INNER JOIN genre ON coach.genre_id = genre.genre_id AND coach_valid=1";
-//$sql = "SELECT genre.*, genre.gender as coach.coach_gender FROM genre join coach on genre.genre_id = coach.genre_id";
 $sql = "select * from coach inner join genre on genre.genre_id = coach.genre_id";
-//$sql = "SELECT * FROM coach full join genre on coach.genre_id = genre.genre_id";
-//$sql = "SELECT coach.genre_id, coach.coach_gender, genre.gender FROM coach right join genre on coach.genre_id = genre.genre_id";
-//$sql = "SELECT coach.*, genre.*
-//FROM coach
-//JOIN genre ON coach.genre_id = genre.genre_id
-//WHERE coach_valid=1 GROUP BY genre.genre_id";
 $stmt = $db_host->prepare($sql);
-
-//$sqlgenre = "SELECT * FROM genre";
-//$resultgenre = $db_host->query($sqlgenre);
-//$genreArr = [];
-//while ($row = $resultgenre->fetch_assoc()) {
-//    $genreArr[$row["genre_id"]] = $row["gender"];
-//}
 
 try {
     $stmt->execute();
@@ -94,6 +79,10 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php require_once("./public/css.php") ?>
     <style>
+        .date-table {
+            max-width: 110px;
+            min-width: 100px;
+        }
         .expertise-width {
             width: 120px;
             min-width: 100px;
@@ -145,7 +134,7 @@ try {
                             <th>電話</th>
                             <th>信箱</th>
                             <th>地址</th>
-                            <th>建立時間</th>
+                            <th class="date-table">建立時間</th>
                             <th>編輯</th>
                         </tr>
                         </thead>
@@ -161,18 +150,7 @@ try {
                                     <img class="cover-fit photo-list" src="images/coach/<?= $value["coach_photo"] ?>">
                                 </td>
                                 <td><?= $value["coach_name"] ?></td>
-                                <td><?= $value["gender"] ?>
-<!--                                    --><?php
-//                                    while ($rows = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
-//                                        if ($rows[$value["genre_id"]] = 1) {
-//                                            echo "男";
-//                                        }elseif ($rows[$value["genre_id"]] = 2) {
-//                                            echo "女";
-//                                        }
-//                                    }
-//
-//                                    ?>
-                                </td>
+                                <td><?= $value["gender"] ?></td>
                                 <td class="expertise-width"><?= $value["coach_expertise"] ?></td>
                                 <td><?= $value["coach_phone"] ?></td>
                                 <td><?= $value["coach_email"] ?></td>

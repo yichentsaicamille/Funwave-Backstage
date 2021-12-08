@@ -49,7 +49,12 @@ try {
             <?php require_once("./public/nav.php") ?>
         </aside>
         <!--/menu-->
-        <article class="article col-lg-9 shadow-sm table-responsive content-group">
+        <div class="col-9 d-flex justify-content-between align-items-center button-group shadow-sm">
+            <div>
+                <a role="button" href="order-list.php" class="btn btn-primary">返回</a>
+            </div>
+        </div>
+        <article class="article col-lg-9 shadow-sm table-responsive">
             <!--content-->
             <div class="table-wrap">
                 <table class="table table-bordered table-sm my-3 text-center">

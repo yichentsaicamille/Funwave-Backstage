@@ -44,7 +44,12 @@ try{
                 <?php require_once("./public/nav.php") ?>
             </aside>
             <!--/menu-->
-            <article class="article col-lg-9 shadow-sm table-responsive content-group">
+            <div class="col-9 d-flex justify-content-between align-items-center button-group shadow-sm">
+                <div>
+                    <a role="button" href="order-list.php" class="btn btn-primary">返回</a>
+                </div>
+            </div>
+            <article class="article col-lg-9 shadow-sm table-responsive">
                 <div class="table-wrap">
                     <form action="./method/doUpdateOrder.php" method="post" class="m-3">
                         <?php foreach ($rowOrderList as $value): ?>
@@ -125,7 +130,7 @@ try{
                                     <option value="訂單已取消" <?php if ($value["status"]==="訂單已取消")echo "selected" ?>>訂單已取消</option>
                                 </select>
                             </div>
-                            <div class="col-md-10 d-flex justify-content-center">
+                            <div class="col-md-10 d-flex justify-content-end">
                                 <button id="bt" class="btn btn-primary" type="submit">送出更新</button>
                             </div>
                         </div>

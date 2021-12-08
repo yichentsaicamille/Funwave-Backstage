@@ -1,5 +1,5 @@
 <?php
-$activePage = basename($_SERVER['PHP_SELF'], ".php");
+ $activePage = basename($_SERVER['PHP_SELF'], ".php");
 ?>
 <nav class="navbar">
     <ul class="navbar-nav">
@@ -41,7 +41,19 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
             <a class="" href="#">資訊/消息管理</a>
         </li>
         <li class="nav-item">
-            <a class="" href="#">會員管理</a>
+            <a class="<?php
+            if (($activePage === 'member-list')) {
+                echo "active";
+            }else if(($activePage === 'member-content')) {
+                echo "active";
+            }else if(($activePage === 'member-edit')) {
+                echo "active";
+            }else if(($activePage === 'create-member')) {
+                echo "active";
+            }else {
+                echo "";
+            }
+            ?>" href="./member-list.php">會員管理</a>
         </li>
         <li class="nav-item">
             <a class="" href="#">評價管理</a>

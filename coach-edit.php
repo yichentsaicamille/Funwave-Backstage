@@ -38,8 +38,8 @@ try {
         .password-img img {
             height: 20px;
             position: absolute;
-            top: 42px;
-            right: 15px;
+            top: 42px !important;
+            right: 15px !important;
         }
     </style>
 </head>
