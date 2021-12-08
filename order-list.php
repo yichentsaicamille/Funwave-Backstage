@@ -1,15 +1,11 @@
-<!--還沒做分頁、會員編號篩選、付款狀態篩選?訂單狀態篩選?。區間篩選待改-->
-<!--訂單編號跟區間是獨立的，一個訂單只會有一個時間。狀態跟區間可以合著。做一個清除開選的按鈕-->
+<!--還沒做分頁(10筆一頁)、會員編號篩選。-->
+<!--還沒做共幾筆-->
+<!--區間篩選待加js判斷star<end-->
+<!--訂單編號跟區間是獨立的，一個訂單只會有一個時間。狀態跟區間可以合著。做一個清除篩選的按鈕-->
 <!--form換頁篩選ssr，js ssr-->
 
 <?php
 require_once("./method/pdo-connect.php");
-//$order_id = $_GET["order_id"]; //order id
-//if (isset($_GET["order_id"])) {
-//    $order_id = $_GET["order_id"];
-//} else {
-//    $order_id  = 0;
-//}
 
 //搜尋：訂單編號
 if (isset($_GET["order_id"])) {
@@ -31,20 +27,21 @@ if (isset($_GET["order_id"])) {
         $stmtOrderList->execute();
         $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
         $orderCount = $stmtOrderList->rowCount();
-        echo "else";
+        echo "else"."<br>";
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
 }
+
 //    篩選訂單編號後，清除篩選要顯示完整清單！empty() 但非0
-if (empty($_GET["order_id"]) && $order_id !== "0") {
+if (empty($_GET["order_id"]) && $order_id !== "0")  {
     $sqlOrderList = "SELECT * FROM order_list ORDER BY id ASC";
     $stmtOrderList = $db_host->prepare($sqlOrderList);
     try {
         $stmtOrderList->execute();
         $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
         $orderCount = $stmtOrderList->rowCount();
-        echo "empty";
+        echo "empty_order"."<br>";
         if (isset($_GET["startDate"])) {
             $startDate = $_GET["startDate"];
             $endDate = $_GET["endDate"];
@@ -54,6 +51,21 @@ if (empty($_GET["order_id"]) && $order_id !== "0") {
                 $stmtOrderList->execute([$startDate, $endDate]);
                 $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
                 $orderCount = $stmtOrderList->rowCount();
+                echo "empty_order +區間"."<br>";
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+        }else if(isset($_GET["startDate"]) && isset($_GET["status"])) {
+            $startDate = $_GET["startDate"];
+            $endDate = $_GET["endDate"];
+            $status=$_GET["status"];
+            $sqlOrderList = "SELECT * FROM order_list WHERE status='$status' AND DATE(order_time) BETWEEN ? AND ? ORDER BY id ASC";
+            $stmtOrderList = $db_host->prepare($sqlOrderList);
+            try {
+                $stmtOrderList->execute([$startDate, $endDate]);
+                $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
+                $orderCount = $stmtOrderList->rowCount();
+                echo "empty_order 狀態+區間"."<br>";
             } catch (PDOException $e) {
                 echo $e->getMessage();
             }
@@ -72,10 +84,11 @@ if (isset($_GET["status"])){
         $stmtOrderList->execute([$status]);
         $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
         $orderCount = $stmtOrderList->rowCount();
+        echo "status"."<br>";
         if (isset($_GET["startDate"])) {
             $startDate = $_GET["startDate"];
             $endDate = $_GET["endDate"];
-            $sqlOrderList = "SELECT * FROM order_list WHERE id='$order_id' AND DATE(order_time) BETWEEN ? AND ? ORDER BY id ASC";
+            $sqlOrderList = "SELECT * FROM order_list WHERE status='$status' AND DATE(order_time) BETWEEN ? AND ? ORDER BY id ASC";
             $stmtOrderList = $db_host->prepare($sqlOrderList);
             try {
                 $stmtOrderList->execute([$startDate, $endDate]);
@@ -89,7 +102,36 @@ if (isset($_GET["status"])){
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
+}if(empty($_GET["status"])){
+    $status=$_GET["status"];
+    $sqlOrderList = "SELECT * FROM order_list ORDER BY id ASC";
+    $stmtOrderList = $db_host->prepare($sqlOrderList);
+    try {
+        $stmtOrderList->execute();
+        $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
+        $orderCount = $stmtOrderList->rowCount();
+        echo "empty_status"."<br>";
+        if (isset($_GET["startDate"])) {
+            $startDate = $_GET["startDate"];
+            $endDate = $_GET["endDate"];
+            $sqlOrderList = "SELECT * FROM order_list WHERE DATE(order_time) BETWEEN ? AND ? ORDER BY id ASC";
+            $stmtOrderList = $db_host->prepare($sqlOrderList);
+            try {
+                $stmtOrderList->execute([$startDate, $endDate]);
+                $rowOrderList = $stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
+                $orderCount = $stmtOrderList->rowCount();
+                echo "empty_status if +區間";
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+        }
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
 }
+
+
+//付款狀態篩選
 
 ?>
 
@@ -122,24 +164,36 @@ if (isset($_GET["status"])){
         </aside>
         <!--/menu-->
         <div class="col-lg-9 shadow-sm button-group">
+<!--                <div class="d-flex justify-content-end align-items-center pt-2">-->
+<!--                    <form action="order-list.php" method="get">-->
+<!--                        <div class="d-flex align-items-center">-->
+<!--                            <label for="order_id" class="d-block">訂單編號篩選</label>-->
+<!--                            <div class="me-2"></div>-->
+<!--                            <input type="number" class="form-control me-2" id="order_id" name="order_id"-->
+<!--                                   value="--><?//= $order_id ?><!--">-->
+<!--                            <button type="submit" class="btn btn-primary text-nowrap">篩選</button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+            <form action="order-list.php" method="get">
                 <div class="d-flex justify-content-end align-items-center pt-2">
-                    <label for="order_id" class="d-block">訂單編號篩選</label>
-                    <form action="order-list.php" method="get">
-                        <div class="d-flex align-items-center">
-                            <div class="me-2"></div>
-                            <input type="number" class="form-control me-2" id="order_id" name="order_id"
-                                   value="<?= $order_id ?>">
-                            <button type="submit" class="btn btn-primary text-nowrap">篩選</button>
-                        </div>
-                    </form>
+                    <div class="d-flex align-items-center">
+                        <label for="order_id" class="d-block">訂單編號篩選</label>
+                        <div class="me-2"></div>
+                        <input type="number" class="form-control me-2" id="order_id" name="order_id"
+                               value="<?= $order_id ?>">
+                        <button type="submit" class="btn btn-primary text-nowrap">篩選</button>
+                    </div>
                 </div>
-                <form action="order-list.php" method="get">
+            </form>
+            <form action="order-list.php" method="get">
                     <div class="d-flex justify-content-end align-items-center pt-2">
+                        <label for="status" class="d-block">訂單狀態</label>
                         <div class="me-2 mt-2">
-                            <select class="form-select" aria-label="status select" name="status">
-                                <option value="訂單處理中">訂單處理中</option>
-                                <option value="訂單已完成">訂單已完成</option>
-                                <option value="訂單已取消">訂單已取消</option>
+                            <select id="status" class="form-select" aria-label="status select" name="status">
+                                <option value="訂單處理中" <?php if ($status==="訂單處理中")echo "selected" ?>>訂單處理中</option>
+                                <option value="訂單已完成" <?php if ($status==="訂單已完成")echo "selected" ?>>訂單已完成</option>
+                                <option value="訂單已取消" <?php if ($status==="訂單已取消")echo "selected" ?>>訂單已取消</option>
                             </select>
                         </div>
                         <div class="mt-2">
@@ -147,10 +201,12 @@ if (isset($_GET["status"])){
                         </div>
                     </div>
                 </form>
+
                 <form action="order-list.php" method="get">
                     <div class="py-2 d-flex justify-content-end align-items-center">
                             <div class="d-flex align-items-center">
-                                <input type="hidden" name="order_id" value="<?= $order_id ?>">
+<!--                                <input type="hidden" name="order_id" value="--><?//= $order_id ?><!--">-->
+                                <input type="hidden" name="status" value="<?= $status ?>">
                                 <input type="date" class="form-control me-2" name="startDate"
                                        value="<?php if (isset($startDate)) echo $startDate; ?>">
                                 <div class="me-2">~</div>
