@@ -1,6 +1,6 @@
 <?php
 require_once("./method/pdo-connect.php");
-require_once("./public/if-login.php");
+require_once("./public/admin-if-login.php");
 
 $sqlMember = "SELECT * FROM member WHERE member_valid=1";
 $stmtMember = $db_host->prepare($sqlMember);
@@ -76,7 +76,7 @@ try {
 <body>
     <div class="container-fluid">
         <div class="row wrap d-flex">
-            <?php require_once("./public/header-logined.php"); ?>
+            <?php require_once("./public/admin-header-logined.php"); ?>
             <!--menu-->
             <aside class="col-lg-2 navbar-side shadow-sm">
                 <?php require_once("./public/nav.php") ?>
