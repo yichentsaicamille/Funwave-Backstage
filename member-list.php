@@ -1,4 +1,5 @@
 <!--差分頁-->
+<!-- 試宜蓁git有沒有自動pull -->
 
 <?php
 require_once("./method/pdo-connect.php");
