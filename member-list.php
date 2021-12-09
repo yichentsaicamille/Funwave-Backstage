@@ -84,7 +84,7 @@ try {
             <!--/menu-->
             <div class="col-lg-9 d-flex justify-content-between align-items-center button-group shadow-sm">
                 <div>
-                    <a role="button" href="./create-member.php" class="btn btn-primary">新增</a>
+                    <a role="button" href="./member-create.php" class="btn btn-primary">新增</a>
                 </div>
                 <form action="member-list.php" method="get">
                     <div class="d-flex">
