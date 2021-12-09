@@ -101,7 +101,7 @@ if (isset($_GET["find"])) {
             </div>
             <div class="d-flex align-items-center">
                 <form action="info-list.php" method="get" class="d-flex justify-content-end align-items-center">
-                    <input type="search" class="form-control form-control-sm me-2" name="find"
+                    <input type="search" class="form-control form-control me-2" name="find"
                            value="<?php if (isset($find)) echo $find; ?>" placeholder="內容搜尋">
                     <button class="btn btn-primary text-nowrap" type="submit">搜尋</button>
                 </form>

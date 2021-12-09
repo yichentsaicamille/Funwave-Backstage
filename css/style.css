@@ -3,7 +3,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 :root {
-    --green-color: #77CB7;
+    --green-color: #77CFB7;
     --blue-color: #81D7D3;
     --pink-color: #E96A97;
     --gray-color: #98A0A5;
@@ -104,7 +104,7 @@ thead tr th {
     white-space:nowrap;
 }
 tbody tr:hover {
-    background: #f3f3f3;
+    background: #e4e4e4;
 }
 tbody tr td {
     /*height: 70px;*/
