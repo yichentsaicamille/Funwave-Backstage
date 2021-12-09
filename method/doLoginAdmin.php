@@ -27,7 +27,7 @@ try {
         $_SESSION["admin"]=$admin; 
         header("location: ../member-list.php");
     }else{
-        header("location: ../admin-log-in.php");
+        header("location: ../log-in-admin.php");
     }
 } catch (PDOException $e) {
     echo $e->getMessage();

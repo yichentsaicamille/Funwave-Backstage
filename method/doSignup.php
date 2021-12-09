@@ -42,7 +42,7 @@ $stmtMember = $db_host->prepare($sqlMember);
 try {
     $stmtMember->execute([]);
     $rowMember = $stmtMember->fetch();
-    header("location: ../admin-log-in.php");
+    header("location: ../log-in-admin.php");
 } catch (PDOException $e) {
     echo $e->getMessage();
     
