@@ -91,7 +91,7 @@ if (isset($_GET["search"])) {
                                             <td>
                                                 <a role="button" href="./member-content.php?member_id=<?= $value["member_id"] ?>" class="ps-2"><i class="fas fa-search"></i></a>
                                             </td>
-                                            <td>
+                                            <td class="d-flex justify-content-center">
                                                 <img class="cover-fit member-photo" src="./images/member/<?= $value["member_photo"]?>">
                                             </td>
                                             <td><?= $value["member_name"] ?></td>
