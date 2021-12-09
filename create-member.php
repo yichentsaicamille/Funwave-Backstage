@@ -81,7 +81,7 @@ require_once("./public/if-login.php");
                     <div class="col-md-5 password-ipt">
                         <label for="password" class="form-label">密碼</label>
                         <input type="password" class="form-control" id="password" name="member_password"
-                               placeholder="請輸入密碼"><label class="password-img"><img src="./images/eyes-open.png" alt="JS實現表單中點選小眼睛顯示隱藏密碼框中的密碼"
+                               placeholder="請輸入密碼"><label class="password-img"><img src="./images/eyes-close.png" alt="JS實現表單中點選小眼睛顯示隱藏密碼框中的密碼"
                                                                id="eyes"></label>
                     </div>
                     <div class="col-10">
