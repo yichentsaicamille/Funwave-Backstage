@@ -63,7 +63,6 @@ if (isset($_GET["search"])) {
                         <input class="form-control me-2" type="search" name="search" value="<?php if (isset($search)) echo $search; ?>">
 <!--                        <button class="btn btn-secondary text-nowrap">搜尋</button>-->
                         <button class="btn btn-primary text-nowrap">搜尋</button>
-                        <h1>Hi</h1>
                     </div>
                 </form>
             </div>
