@@ -138,6 +138,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
 
     const regEmail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 
+    
     submitBtn.addEventListener("click", function (e) {
         e.preventDefault();
         let accountExist = true;

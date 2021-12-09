@@ -19,6 +19,7 @@ try {
 $now=date("Y-m-d H:i:s");
 $sqlMember="INSERT INTO member(member_deleted_at) VALUES('$now') WHERE member_id=?";
 $stmtMember = $db_host->prepare($sqlMember);
+
 try {
     $stmtMember->execute([$member_id]);
     $rowMember = $stmtMember->fetch();
