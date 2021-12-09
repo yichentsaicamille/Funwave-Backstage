@@ -42,7 +42,7 @@ require_once("./public/if-login.php");
         <article class="article col-9 shadow-sm">
             <!--content-->
             <div>
-                <form class="row g-3 mt-5 pb-5 d-flex justify-content-center" action="./method/doInsert.php"
+                <form class="row g-3 mt-5 pb-5 d-flex justify-content-center" action="./method/doInsertMember.php"
                       method="post">
                     <div class="col-md-5 d-flex justify-content-center align-items-center">
                         <div>
