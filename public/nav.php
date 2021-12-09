@@ -38,7 +38,19 @@
             ?>" href="./coach.php">教練管理</a>
         </li>
         <li class="nav-item">
-            <a class="" href="#">資訊/消息管理</a>
+            <a class="<?php
+            if (($activePage === 'info-list')) {
+                echo "active";
+            }else if(($activePage === 'info-editor')) {
+                echo "active";
+            }else if(($activePage === 'info-create')) {
+                echo "active";
+            }else if(($activePage === 'info-read')) {
+                echo "active";
+            }else {
+                echo "";
+            }
+            ?>" href="./info-list.php">資訊/消息管理</a>
         </li>
         <li class="nav-item">
             <a class="<?php

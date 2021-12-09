@@ -48,8 +48,6 @@ try {
             <div class="col-lg-9 button-group d-flex align-items-center shadow-sm px-3">
 
                 <a class="btn btn-primary me-4" href="./info-list.php">返回</a>
-<!--                <a href="./method/infoDelete.php?info_id=--><?//= $value["info_id"] ?><!--" class="btn btn-danger"-->
-<!--                   onclick="javascript:return del();">刪除</a>-->
             </div>
             <article class="article col-9 shadow-sm">
                 <div class="p-5">

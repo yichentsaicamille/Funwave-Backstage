@@ -19,36 +19,20 @@
         <div class="col-9 d-flex align-items-center button-group shadow-sm">
             <div class="d-flex">
                 <a class="btn btn-primary me-4" href="info-list.php">返回</a>
-
-<!--                <a href="info-list.php" class="btn btn-danger">刪除</a>-->
             </div>
         </div>
         <article class="article col-9 shadow-sm">
             <div>
                 <form action="./method/infoInsert.php" class="row g-3 mt-5 pb-5 d-flex justify-content-center" method="post">
-<!--                    <div class="col-lg-9 button-group d-flex align-items-center shadow-sm px-3">-->
-<!---->
-<!--                        <a class="btn btn-primary me-4" href="info-list.php">返回</a>-->
-<!--                        <button class="btn btn-primary me-4" type="submit">儲存</button>-->
-<!--                        <a href="info-list.php" class="btn btn-danger">刪除</a>-->
-<!--                    </div>-->
                     <div class="col-md-5 d-flex justify-content-center align-items-center">
                         <div>
                             <img id="preview-photo" class="photo-img cover-fit d-none" src=" ">
                         </div>
                     </div>
-<!--                    <div class="col-md-5 d-flex justify-content-end">-->
-<!--                        <div class="">-->
-<!--                            <label for="photo" class="form-label">圖片</label>-->
-<!--                            <input type="file" class="form-control form-control-sm" name="photo" id="photo">-->
-<!--                        </div>-->
-<!--                        <button class="btn btn-primary m-2" name="info_photo">上傳</button>-->
-<!--                    </div>-->
                     <div class="col-md-5">
                         <label for="photo" class="form-label">照片</label>
                         <div class="d-flex align-items-center">
                             <input type="file" class="form-control" id="photo" name="info_image" id="photo">
-<!--                            <button class="btn btn-primary m-2 text-nowrap" name="info_image">上傳</button>-->
                         </div>
                     </div>
                     <div class="col-md-10 py-3">

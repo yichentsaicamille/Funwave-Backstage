@@ -101,10 +101,6 @@ if (isset($_GET["find"])) {
             </div>
             <div class="d-flex align-items-center">
                 <form action="info-list.php" method="get" class="d-flex justify-content-end align-items-center">
-                    <!--                   <input type="search" class="form-control form-control-sm me-2" name="find_category"-->
-                    <!--                   value="-->
-                    <?php //if (isset($find_category)) echo $find_category; ?><!--" placeholder="類別搜尋">-->
-                    <!--                   <button class="btn btn-primary text-nowrap me-4" type="submit">搜尋</button>-->
                     <input type="search" class="form-control form-control-sm me-2" name="find"
                            value="<?php if (isset($find)) echo $find; ?>" placeholder="內容搜尋">
                     <button class="btn btn-primary text-nowrap" type="submit">搜尋</button>
@@ -128,7 +124,6 @@ if (isset($_GET["find"])) {
                     <thead>
                     <tr>
                         <th>檢視</th>
-<!--                        <th>id</th>-->
                         <th>類別</th>
                         <th>標題</th>
                         <th>內容</th>
@@ -143,7 +138,6 @@ if (isset($_GET["find"])) {
                             <tr>
                                 <td class="text-center"><a href="info-read.php?info_id=<?= $value["info_id"] ?>">
                                         <i class="fas fa-search"></i></a></td>
-<!--                                <td>--><?//= $value["info_id"] ?><!--</td>-->
                                 <td>
                                     <?= $value["info_category"] ?>
                                 </td>

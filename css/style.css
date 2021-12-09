@@ -40,7 +40,6 @@ body {
 .navbar-side {
     background: #fff;
     min-height: 100vh;
-    /*margin-top: 75px;*/
     position: fixed;
     width: 200px;
     padding: 90px 30px 30px 30px;

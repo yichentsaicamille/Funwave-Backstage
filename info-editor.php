@@ -28,10 +28,6 @@ try {
         .form-control-sm {
             width: 70%;
         }
-
-        .badge:hover {
-
-        }
     </style>
 
 </head>
@@ -51,7 +47,6 @@ try {
                     <div class="col-lg-9 button-group d-flex align-items-center shadow-sm px-3">
 
                         <a class="btn btn-primary me-4" href="info-list.php">返回</a>
-                        <!--                        <button class="btn btn-primary me-4" type="submit">儲存</button>-->
                         <a class="btn btn-primary me-4" href="info-read.php?info_id=<?= $value["info_id"] ?>">檢視</a>
                         <a href="./method/infoDelete.php?info_id=<?= $value["info_id"] ?>" class="btn btn-danger"
                            onclick="javascript:return del();">刪除</a>
