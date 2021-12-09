@@ -110,7 +110,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
                         <input id="address" type="text" name="member_address" class="form-control" placeholder="請輸入住址">
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button class="btn btn-primary" onclick="javascript:return signup();" id="submitBtn"
+                        <button class="btn btn-primary" id="submitBtn"
                                 type="submit">送出
                         </button>
                     </div>
@@ -172,20 +172,21 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
 
             form.submit();
 
+            if (name.value !== "" && account.value !== "" && email.value !== "" && password.value !== "" && repassword.value !== "" && phone.value !== "" && form.submit) {
+                    function signup() {
+                        var msg = "註冊會員成功！";
+                        if (alert(msg) == true) {
+                            window.location.replace("./admin-log-in.php");
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                }
+                signup();
+
         }
     })
-
-    if (form.submit) {
-        function signup() {
-            var msg = "註冊會員成功！";
-            if (alert(msg) == true) {
-                window.location.replace("./log-in.php");
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
 
     var input = document.querySelector('#password')
     var imgs = document.getElementById('eyes');
