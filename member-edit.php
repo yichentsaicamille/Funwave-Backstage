@@ -1,6 +1,6 @@
 <?php
 require_once("./method/pdo-connect.php");
-require_once("./public/if-login.php");
+require_once("./public/admin-if-login.php");
 $member_id = $_GET["member_id"];
 $sqlMember = "SELECT * FROM member WHERE member_id=?";
 $stmtMember = $db_host->prepare($sqlMember);
@@ -40,7 +40,7 @@ try {
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php require_once("./public/header-logined.php"); ?>
+        <?php require_once("./public/admin-header-logined.php"); ?>
         <!--menu-->
         <aside class="col-lg-2 navbar-side shadow-sm">
             <?php require_once("./public/nav.php") ?>
@@ -61,7 +61,7 @@ try {
                             <input type="hidden" name="member_id" value="<?= $value["member_id"] ?>">
                             <div class="col-md-5 d-flex justify-content-center align-items-center">
                                 <div>
-                                    <img id="preview-photo" class="show-photo cover-fit d-none" src="">
+                                    <img id="preview-photo" class="show-photo cover-fit" src="./images/member/<?= $value["member_photo"] ?>">
                                 </div>
                             </div>
                             <div class="col-md-5">
