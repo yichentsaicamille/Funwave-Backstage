@@ -1,5 +1,3 @@
-<!--差分頁-->
-
 <?php
 require_once("./method/pdo-connect.php");
 require_once("./public/if-login.php");
