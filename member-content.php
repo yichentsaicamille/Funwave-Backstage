@@ -56,7 +56,7 @@ try {
                                 </tr>
                                 <tr>
                                     <th>電話</th>
-                                    <td>0<?= $value["member_phone"] ?></td>
+                                    <td><?= $value["member_phone"] ?></td>
                                 </tr>
                                 <tr>
                                     <th>信箱</th>
