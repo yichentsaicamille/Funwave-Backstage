@@ -85,7 +85,7 @@ try {
                             <div class="col-md-5">
                                 <label for="phone" class="form-label">電話</label>
                                 <input type="text" class="form-control" id="phone" name="member_phone"
-                                       placeholder="0<?= $value["member_phone"] ?>">
+                                       placeholder="<?= $value["member_phone"] ?>">
                             </div>
                             <div class="col-md-5">
                                 <label for="email" class="form-label">信箱</label>
