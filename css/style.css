@@ -40,7 +40,6 @@ body {
 .navbar-side {
     background: #fff;
     min-height: 100vh;
-    /*margin-top: 75px;*/
     position: fixed;
     width: 200px;
     padding: 90px 30px 30px 30px;
@@ -111,9 +110,9 @@ tbody tr td {
     /*height: 70px;*/
     /*white-space:nowrap;*/
 }
-/* .photo-img {
+.photo-img {
     height: 120px;
-} */
+}
 /* .photo-list {
     min-width: 60px;
     max-width: 70px;
