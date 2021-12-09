@@ -1,5 +1,5 @@
 <!--是否需要在資料表order-detail添加會員編號欄位。圖片路徑待添加-->
-
+<!-- hi -->
 <?php
 require_once("./method/pdo-connect.php");
 $order_id = $_GET["order_id"]; //order id
