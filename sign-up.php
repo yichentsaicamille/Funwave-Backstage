@@ -88,14 +88,14 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
                     <div class="mb-3 password-ipt">
                         <label for="password">密碼*</label>
                         <input id="password" type="password" name="member_password" class="form-control" required
-                               placeholder="請輸入密碼"><label class="password-img"><img src="./images/eyes-open.png" alt="JS實現表單中點選小眼睛顯示隱藏密碼框中的密碼"
+                               placeholder="請輸入密碼"><label class="password-img"><img src="./images/eyes-close.png" alt="JS實現表單中點選小眼睛顯示隱藏密碼框中的密碼"
                                                                id="eyes"></label>
                         <div id="passwordError" class="text-danger"></div>
                     </div>
                     <div class="mb-3 password-ipt">
                         <label for="repassword">確認密碼*</label>
                         <input id="repassword" type="password" name="repassword" class="form-control" required
-                               placeholder="請再次輸入密碼"><label class="password-img"><img src="./images/eyes-open.png" alt="JS實現表單中點選小眼睛顯示隱藏密碼框中的密碼"
+                               placeholder="請再次輸入密碼"><label class="password-img"><img src="./images/eyes-close.png" alt="JS實現表單中點選小眼睛顯示隱藏密碼框中的密碼"
                                                                  id="eye"></label>
                         <div id="repasswordError" class="text-danger"></div>
                     </div>
