@@ -14,7 +14,7 @@ try {
 //搜尋
 if (isset($_GET["find"])) {
     $find = $_GET["find"];
-    $sql = "SELECT * FROM information WHERE info_content LIKE ? AND info_valid=1 ORDER BY time DESC";
+    $sql = "SELECT * FROM information WHERE info_content LIKE ? AND info_valid=1 ORDER BY info_time DESC";
     $stmt = $db_host->prepare($sql);
     try {
         $stmt->execute(["%$find%"]);

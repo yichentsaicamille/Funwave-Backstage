@@ -80,7 +80,7 @@ try {
                             <?php if ($value["info_image"] != null):
                                 ?>
                                 <td>
-                                    <img src="../images/<?= $value["info_image"] ?>" style="max-width:930px ">
+                                    <img src="images/information/<?= $value["info_image"] ?>" style="max-width:930px ">
                                 </td>
                             <?php else: ?>
                                 <td>
@@ -107,6 +107,16 @@ try {
             return true;
         } else {
             return false;
+        }
+    }
+
+    var avatar = document.getElementsByName("info_image")[0]
+    var previewAvatar = document.getElementById("preview-photo")
+    avatar.onchange = () => {
+        var file = avatar.files[0]
+        if (file) {
+            previewAvatar.src = URL.createObjectURL(file)
+            previewAvatar.classList.remove('d-none')
         }
     }
 </script>

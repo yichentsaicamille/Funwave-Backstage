@@ -53,6 +53,11 @@ try {
                     </div>
                     <div class="col-lg-9 article py-3 px-5 shadow-sm">
                         <div class="d-flex align-items-center  justify-content-end">
+                            <div class="col-md-5 d-flex justify-content-center align-items-center">
+                                <div>
+                                    <img id="preview-photo" class="photo-img cover-fit d-none" src=" ">
+                                </div>
+                            </div>
                             <input type="file" class="form-control form-control-sm" name="info_image">
                         </div>
                     </div>
@@ -64,7 +69,7 @@ try {
                         </label>
                         <br>
                         <label class="form-label">標題</label>
-                        <input type="text" class="form-control mb-3" name="title" value="<?= $value["info_title"] ?>">
+                        <input type="text" class="form-control mb-3" name="info_title" value="<?= $value["info_title"] ?>">
 
                         <div class="d-flex justify-content-between">
                             <label class="form-label">內容</label>
@@ -119,6 +124,16 @@ try {
         $("textarea").css("font-size", "12px");
 
     });
+
+    var avatar = document.getElementsByName("info_image")[0]
+    var previewAvatar = document.getElementById("preview-photo")
+    avatar.onchange = () => {
+        var file = avatar.files[0]
+        if (file) {
+            previewAvatar.src = URL.createObjectURL(file)
+            previewAvatar.classList.remove('d-none')
+        }
+    }
 </script>
 
 </body>
