@@ -44,7 +44,7 @@ try {
                             <?php foreach ($rowMember as $value) : ?>
                                 <tr>
                                     <th>頭像</th>
-                                    <td><img class="content-img" src="./images/<?= $value["member_photo"] ?>"></td>
+                                    <td><img class="content-img" src="./images/member/ <?= $value["member_photo"] ?>"></td>
                                 </tr>
                                 <tr>
                                     <th>姓名</th>
