@@ -67,7 +67,7 @@ if (isset($_SESSION["member"])) {
                         
                         <div class="mb-3 password-ipt">
                             <label for="password">密碼</label>
-                            <input id="password" type="password" name="member_password" class="form-control show-on" required placeholder="請輸入密碼"><label class="password-img"><img src="./images/eyes-open.png" alt="JS實現表單中點選小眼睛顯示隱藏密碼框中的密碼" id="eyes"></label>
+                            <input id="password" type="password" name="member_password" class="form-control show-on" required placeholder="請輸入密碼"><label class="password-img"><img src="./images/eyes-close.png" alt="JS實現表單中點選小眼睛顯示隱藏密碼框中的密碼" id="eyes"></label>
                             <div id="passwordError" class="text-danger"></div>
                         </div>
                         <div class="d-flex justify-content-end">

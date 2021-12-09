@@ -42,7 +42,7 @@ require_once("./public/if-login.php");
         <article class="article col-9 shadow-sm">
             <!--content-->
             <div>
-                <form class="row g-3 mt-5 pb-5 d-flex justify-content-center" action="./method/doInsert.php"
+                <form class="row g-3 mt-5 pb-5 d-flex justify-content-center" action="./method/doInsertMember.php"
                       method="post">
                     <div class="col-md-5 d-flex justify-content-center align-items-center">
                         <div>
@@ -81,7 +81,7 @@ require_once("./public/if-login.php");
                     <div class="col-md-5 password-ipt">
                         <label for="password" class="form-label">密碼</label>
                         <input type="password" class="form-control" id="password" name="member_password"
-                               placeholder="請輸入密碼"><label class="password-img"><img src="./images/eyes-open.png" alt="JS實現表單中點選小眼睛顯示隱藏密碼框中的密碼"
+                               placeholder="請輸入密碼"><label class="password-img"><img src="./images/eyes-close.png" alt="JS實現表單中點選小眼睛顯示隱藏密碼框中的密碼"
                                                                id="eyes"></label>
                     </div>
                     <div class="col-10">
