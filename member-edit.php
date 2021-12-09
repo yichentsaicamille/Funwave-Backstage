@@ -61,7 +61,7 @@ try {
                             <input type="hidden" name="member_id" value="<?= $value["member_id"] ?>">
                             <div class="col-md-5 d-flex justify-content-center align-items-center">
                                 <div>
-                                    <img id="preview-photo" class="show-photo cover-fit d-none" src="">
+                                    <img id="preview-photo" class="show-photo cover-fit" src="./images/member/<?= $value["member_photo"] ?>">
                                 </div>
                             </div>
                             <div class="col-md-5">
