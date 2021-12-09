@@ -25,7 +25,7 @@ if (isset($_GET["search"]) && ($_GET["search"] != "")) {
     } else {
         $p = 1;
     }
-    $pageItems = 10;
+    $pageItems = 5;
     $startItem = ($p - 1) * $pageItems;
 
     //計算總頁數
