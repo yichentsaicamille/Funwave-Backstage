@@ -10,25 +10,55 @@ $stmtMember = $db_host->prepare($sqlMember);
 try {
     $stmtMember->execute([]);
     $rowMember = $stmtMember->fetchAll(PDO::FETCH_ASSOC);
-    $memberExist = $stmtMember->rowCount();
+    $totalMember = $stmtMember->rowCount();
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
 
-
-if (isset($_GET["search"])) {
+// 如果有搜尋
+if (isset($_GET["search"]) && ($_GET["search"] != "")) {
     $search = $_GET["search"];
     $sqlMember = "SELECT * FROM member WHERE member_name LIKE '%$search%' AND member_valid=1";
     $stmtMember = $db_host->prepare($sqlMember);
-    try {
-        $stmtMember->execute([]);
-        $rowMember = $stmtMember->fetchAll(PDO::FETCH_ASSOC);
-        $memberExist = $stmtMember->rowCount();
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
 } else {
-    $search = "";
+    //如果沒有搜尋就顯示分頁
+    if (isset($_GET["p"])) {
+        $p = $_GET["p"];
+    } else {
+        $p = 1;
+    }
+    $pageItems = 10;
+    $startItem = ($p - 1) * $pageItems;
+
+    //計算總頁數
+    $pageCount = $totalMember / $pageItems;
+
+
+    //取餘數
+    $pageR = $totalMember % $pageItems;
+
+
+    $startNo = ($p - 1) * $pageItems + 1;
+    $endNo = $p * $pageItems;
+
+    if ($pageR !== 0) {
+        $pageCount = ceil($pageCount); //如果不=0無條件進位
+        if ($pageCount == $p) {
+            $endNo = $endNo - ($pageItems - $pageR);
+        }
+    }
+    //    有限制筆數的語句
+    $sqlMember = "SELECT * FROM member WHERE member_valid=1 LIMIT $startItem, $pageItems";
+    //    準備好語句
+    $stmtMember = $db_host->prepare($sqlMember);
+}
+//最後執行
+try {
+    $stmtMember->execute([]);
+    $rowMember = $stmtMember->fetchAll(PDO::FETCH_ASSOC);
+    $memberRows= $stmtMember->rowCount();
+} catch (PDOException $e) {
+    echo $e->getMessage();
 }
 ?>
 
@@ -61,70 +91,84 @@ if (isset($_GET["search"])) {
                 <form action="member-list.php" method="get">
                     <div class="d-flex">
                         <input class="form-control me-2" type="search" name="search" value="<?php if (isset($search)) echo $search; ?>">
-<!--                        <button class="btn btn-secondary text-nowrap">搜尋</button>-->
+                        <!--                        <button class="btn btn-secondary text-nowrap">搜尋</button>-->
                         <button class="btn btn-primary text-nowrap">搜尋</button>
                     </div>
                 </form>
             </div>
-<!--            <form action="member-list.php" method="get">-->
-                <article class="article col-lg-9 shadow-sm table-responsive">
-                    <!--content-->
-                    <div class="table-wrap">
-                        <?php if ($memberExist > 0) : ?>
-                            <table class="table table-bordered align-middle my-3">
-                                <thead>
+            <!--            <form action="member-list.php" method="get">-->
+            <article class="article col-lg-9 shadow-sm table-responsive">
+                <!--content-->
+                <div class="table-wrap">
+                    <?php if ($memberRows > 0) : ?>
+                        <table class="table table-bordered align-middle my-3">
+                            <thead>
+                                <tr>
+                                    <th>查看</th>
+                                    <th>照片</th>
+                                    <th>姓名</th>
+                                    <th>性別</th>
+                                    <th>電話</th>
+                                    <th>信箱</th>
+                                    <th>地址</th>
+                                    <th>建立時間</th>
+                                    <th>編輯</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($rowMember as $value) : ?>
                                     <tr>
-                                        <th>查看</th>
-                                        <th>照片</th>
-                                        <th>姓名</th>
-                                        <th>性別</th>
-                                        <th>電話</th>
-                                        <th>信箱</th>
-                                        <th>地址</th>
-                                        <th>建立時間</th>
-                                        <th>編輯</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($rowMember as $value) : ?>
-                                        <tr>
-                                            <td>
-                                                <a role="button" href="./member-content.php?member_id=<?= $value["member_id"] ?>" class="ps-2"><i class="fas fa-search"></i></a>
-                                            </td>
-                                            <td class="d-flex justify-content-center">
-                                                <img class="cover-fit member-photo" src="./images/member/<?= $value["member_photo"]?>">
-                                            </td>
-                                            <td><?= $value["member_name"] ?></td>
-                                            <td><?= $value["member_gender"] ?></td>
-                                            <td><?= $value["member_phone"] ?></td>
-                                            <td><?= $value["member_email"] ?></td>
-                                            <td><?= $value["member_address"] ?></td>
-                                            <td><?= $value["member_created_at"] ?></td>
-                                            <td>
-                                                <div class="d-flex">
-                                                    <a role="button" href="member-edit.php?member_id=<?= $value["member_id"] ?>"><i class="fas fa-edit"></i></a>
-                                                    <div>&nbsp;/&nbsp;</div>
-                                                    <a role="button" href="./method/doDeleteMember.php?member_id=<?= $value["member_id"] ?>" onclick="javascript:return del();"><i class="fas fa-trash-alt"></i></a>
+                                        <td>
+                                            <a role="button" href="./member-content.php?member_id=<?= $value["member_id"] ?>" class="ps-2"><i class="fas fa-search"></i></a>
+                                        </td>
+                                        <td class="d-flex justify-content-center">
+                                            <img class="cover-fit member-photo" src="./images/member/<?= $value["member_photo"] ?>">
+                                        </td>
+                                        <td><?= $value["member_name"] ?></td>
+                                        <td><?= $value["member_gender"] ?></td>
+                                        <td><?= $value["member_phone"] ?></td>
+                                        <td><?= $value["member_email"] ?></td>
+                                        <td><?= $value["member_address"] ?></td>
+                                        <td><?= $value["member_created_at"] ?></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a role="button" href="member-edit.php?member_id=<?= $value["member_id"] ?>"><i class="fas fa-edit"></i></a>
+                                                <div>&nbsp;/&nbsp;</div>
+                                                <a role="button" href="./method/doDeleteMember.php?member_id=<?= $value["member_id"] ?>" onclick="javascript:return del();"><i class="fas fa-trash-alt"></i></a>
 
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                            <nav aria-label="Page navigation example my-5">
-                                <ul class="pagination d-flex justify-content-center">
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                </ul>
-                            </nav>
-                        <?php else : ?>
-                            沒有會員資料
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                        <div>
+                        <!--如果有分頁要顯示目前筆數-->
+                        <?php if (isset($p)): ?>
+                            <div class="py-2">共 <?= $totalMember ?> 筆</div>
+                        <?php else: ?>
+                            <div class="py-2">共 <?= $memberRows ?> 筆</div>
                         <?php endif; ?>
                     </div>
-                </article>
-<!--            </form>-->
+                    <!--        如果使用搜尋功能因為沒有p pagaCount會跑出來有問題 所以加上判斷 有p才出現這個UI-->
+                    <?php if (isset($p)): ?>
+                        <nav aria-label="Page navigation example ">
+                            <ul class="pagination justify-content-center">
+                                <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
+                                    <!--當下頁數跟頁碼相同時echo active 寫在li class裡面-->
+                                    <li class="page-item <?php if ($p == $i) echo "active" ?>">
+                                        <a class="page-link" href="member-list.php?p=<?= $i ?>"><?= $i ?></a></li>
+                                <?php endfor; ?>
+                            </ul>
+                        </nav>
+                    <?php endif; ?>
+                    <?php else : ?>
+                        沒有會員資料
+                    <?php endif; ?>
+                </div>
+                <!--content-->
+            </article>
+            <!--</form>-->
         </div>
     </div>
 </body>
