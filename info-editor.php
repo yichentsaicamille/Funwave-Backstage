@@ -55,10 +55,10 @@ try {
                         <div class="d-flex align-items-center  justify-content-end">
                             <div class="col-md-5 d-flex justify-content-center align-items-center">
                                 <div>
-                                    <img id="preview-photo" class="photo-img cover-fit d-none" src=" ">
+                                    <img id="preview-photo" class="photo-img cover-fit " src="images/information/<?= $value["info_image"] ?>">
                                 </div>
                             </div>
-                            <input type="file" class="form-control form-control-sm" name="info_image">
+                            <input type="file" class="form-control form-control-sm" name="info_image" id="photo">
                         </div>
                     </div>
                     <div class="col-lg-9 article p-5 shadow-sm">

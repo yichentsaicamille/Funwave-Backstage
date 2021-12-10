@@ -32,7 +32,7 @@
                     <div class="col-md-5">
                         <label for="photo" class="form-label">照片</label>
                         <div class="d-flex align-items-center">
-                            <input type="file" class="form-control" id="photo" name="info_image" id="photo">
+                            <input type="file" class="form-control"  name="info_image" id="photo">
                         </div>
                     </div>
                     <div class="col-md-10 py-3">
