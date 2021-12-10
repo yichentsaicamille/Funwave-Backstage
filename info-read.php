@@ -1,5 +1,6 @@
 <?php
 require_once("./method/pdo-connect.php");
+require_once("./public/admin-if-login.php");
 if (isset($_GET["info_id"])) {
     $info_id = $_GET["info_id"];
 } else {
@@ -30,12 +31,15 @@ try {
             white-space: pre-wrap;
             word-wrap: break-word;
         }
+        tbody tr:hover {
+            background: none !important;
+        }
     </style>
 </head>
 <body>
 <div class="container-fluid">
     <div class="row wrap d-flex ">
-        <?php require_once("./public/header.php") ?>
+    <?php require_once("./public/admin-header-logined.php") ?>
         <aside class="col-lg-2 navbar-side shadow-sm">
             <?php require_once("./public/nav.php") ?>
         </aside>
@@ -80,7 +84,7 @@ try {
                             <?php if ($value["info_image"] != null):
                                 ?>
                                 <td>
-                                    <img src="images/information/<?= $value["info_image"] ?>" style="max-width:930px ">
+                                    <img src="images/information/<?= $value["info_image"] ?>" style="max-width:240px ">
                                 </td>
                             <?php else: ?>
                                 <td>
