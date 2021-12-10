@@ -5,7 +5,7 @@ require_once("./public/admin-if-login.php");
 <!doctype html>
 <html lang="en">
 <head>
-    <title>新增教練</title>
+    <title>Create Coach</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -55,8 +55,8 @@ require_once("./public/admin-if-login.php");
                     </div>
                     <div class="col-md-5">
                         <label for="gender" class="form-label">性別</label>
-                        <select id="gender" name="genre_id" class="form-select" required aria-label="select example">
-                            <option selected>請選擇性別</option>
+                        <select id="gender" name="genre_id" class="form-select" aria-label="Default select example">
+                            <!-- <option selected>請選擇性別</option> -->
                             <option value="1">男生</option>
                             <option value="2">女生</option>
                         </select>

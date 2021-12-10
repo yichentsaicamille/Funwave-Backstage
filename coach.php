@@ -1,6 +1,6 @@
 <?php
 require_once("./method/pdo-connect.php");
-// require_once("./public/admin-if-login.php");
+require_once("./public/admin-if-login.php");
 $sql = "select * from coach inner join genre on genre.genre_id = coach.genre_id";
 $stmt = $db_host->prepare($sql);
 

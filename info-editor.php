@@ -56,7 +56,11 @@ try {
                         <div class="d-flex align-items-center  justify-content-end">
                             <div class="col-md-5 d-flex justify-content-center align-items-center">
                                 <div>
+                                    <?php if ($value["info_image"] != null):?>
+                                    <img id="preview-photo" class="photo-img cover-fit " src="images/information/<?= $value["info_image"] ?>">
+                                    <?php else:?>
                                     <img id="preview-photo" class="photo-img cover-fit d-none" src="images/information/<?= $value["info_image"] ?>">
+                                    <?php endif;?>
                                 </div>
                             </div>
                             <input type="file" class="form-control form-control-sm" name="info_image" id="photo">

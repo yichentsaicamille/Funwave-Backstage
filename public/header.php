@@ -20,8 +20,9 @@ try {
     <div class="">
         <a class="logo-text" href="#"><img class="logo" src="images/logo.png" alt="">Fun浪</a>
         <!--    1208修改後要復原    -->
-        <div class="d-flex justify-content-end">-->
-            <div>Hi,<?= $_SESSION["admin"]["admin_name"] ?>&nbsp;<a href="./method/doLogout.php" class="btn btn-info text-white">登出</a></div>
-        </div>
+<!--        <div class="d-flex justify-content-end">-->
+<!--            <div>Hi, --><?//= $_SESSION["member"]["member_name"] ?><!--&nbsp;<a href="./method/doLogout.php"-->
+<!--                                                                       class="btn btn-info text-white">登出</a></div>-->
+<!--        </div>-->
     </div>
 </header>

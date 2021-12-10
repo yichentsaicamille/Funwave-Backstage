@@ -42,13 +42,13 @@ require_once("./public/admin-if-login.php");
                     </div>
                     <div class="col-md-10 py-3">
                         <label>類型
-                            <input type="text" style="margin-top: 0.5rem" class="form-control mb-3" name="info_category">
+                            <input type="text" style="margin-top: 0.5rem" class="form-control mb-3" name="info_category"required>
                         </label>
                         <br>
                         <label class="form-label">標題</label>
-                        <input type="text" class="form-control mb-3" name="info_title">
+                        <input type="text" class="form-control mb-3" name="info_title"required>
                         <label for="exampleFormControlTextarea1" class="form-label">內容</label>
-                        <textarea class="form-control" name="info_content" rows="20"></textarea>
+                        <textarea class="form-control" name="info_content" rows="20"required></textarea>
                     </div>
                     <div class="col-md-10 d-flex justify-content-end">
                         <button class="btn btn-primary" type="submit">送出</button>
