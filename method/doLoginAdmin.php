@@ -25,7 +25,7 @@ try {
             "admin_name"=>$rowAdmin["admin_name"]
         ];
         $_SESSION["admin"]=$admin; 
-        // header("location: ../member-list.php");
+        header("location: ../index.php");
     }else{
         header("location: ../log-in-admin.php");
     }
