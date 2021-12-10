@@ -42,7 +42,7 @@ if(isset($_POST["action"])&&($_POST["action"]=="update")){
 <!doctype html>
 <html lang="en">
 <head>
-    <title>修改浪點資料</title>
+    <title>Spot Edit</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
