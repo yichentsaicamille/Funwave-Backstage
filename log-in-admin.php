@@ -40,7 +40,7 @@ if (isset($_SESSION["admin"])) {
                             } else {
                                 echo "";
                             }
-                            ?>" href="./log-in.php">登入</a></li>
+                            ?>" href="./log-in-admin.php">登入</a></li>
                         <li><a class="<?php
                             if (($activePage === 'sign-up')) {
                                 echo "active";
