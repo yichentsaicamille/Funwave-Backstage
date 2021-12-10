@@ -172,6 +172,7 @@ if (isset($_GET["find"])) {
                     <?php endif; ?>
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-center">
                 <?php if (isset($pageNum)): ?>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
@@ -185,6 +186,7 @@ if (isset($_GET["find"])) {
                         </ul>
                     </nav>
                 <?php endif; ?>
+                </div>
             </div><!--col-9-->
         </article>
     </div>

@@ -109,16 +109,6 @@ try {
             return false;
         }
     }
-
-    var avatar = document.getElementsByName("info_image")[0]
-    var previewAvatar = document.getElementById("preview-photo")
-    avatar.onchange = () => {
-        var file = avatar.files[0]
-        if (file) {
-            previewAvatar.src = URL.createObjectURL(file)
-            previewAvatar.classList.remove('d-none')
-        }
-    }
 </script>
 
 
