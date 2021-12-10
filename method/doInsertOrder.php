@@ -9,23 +9,24 @@ $stmt = $db_host->prepare($sql);
 $stmt->execute();
 $products = $stmt->fetchAll();
 
-$test="";
-//$sqlOrderDetail="INSERT INTO order_list(order_id, product_id, quantity) VALUES('$order_id' , '$product_id', '$quantity')";
 //撈出product_id要放入order-detail.php
 foreach ($products as $product):
     echo $product['product_id'];
     $order_id='123';
     $product_id=$product['product_id'];
     $quantity='1';
-    $sqlOrderDetail="INSERT INTO order_list(order_id, product_id, quantity) VALUES('$order_id' , '$product_id', '$quantity')";
+    $sqlOrderDetail="INSERT INTO order_details(order_id, product_id, quantity) VALUES('$order_id' , '$product_id', '$quantity')";
     $stmtOrderDetail=$db_host->prepare($sqlOrderDetail);
+
     try{
-        $stmtOrderDetail->execute([$test]);
+        $stmtOrderDetail->execute();
+        $order_details = $stmt->fetchAll();
         echo "建立order-detail資料完成";
     }catch (PDOException $e){
         echo "建立order-detail資料錯誤: ".$e->getMessage();
     }
 endforeach;
+var_dump($products);
 
 $member_id='88';
 $amount='0';
