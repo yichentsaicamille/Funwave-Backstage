@@ -130,7 +130,7 @@ try {
                                value="<?= $row["coach_address"] ?>" placeholder="請輸入地址">
                     </div>
                     <div class="col-10 d-flex justify-content-end">
-                        <button id="submitBtn" type="submit" class="btn btn-primary">送出</button>
+                        <button id="submitBtn" type="submit" class="btn btn-primary" onclick="submitFun()">送出</button>
                     </div>
                 </form>
             </div>
@@ -164,6 +164,9 @@ try {
         }
     }
 
+    function submitFun(){
+        alert("已更新完成");
+    }
     // let form = document.querySelector("#form"), submitBtn = document.querySelector("#submitBtn"), name = document.querySelector("#name"), account = document.querySelector("#account"), password = document.querySelector("#password"), repassword = document.querySelector("#repassword"), email = document.querySelector("#email"), phone = document.querySelector("#phone"), nameError = document.querySelector("#nameError"), accountError = document.querySelector("#accountError"), emailError = document.querySelector("#emailError"), passwordError = document.querySelector("#passwordError"), repasswordError = document.querySelector("#repasswordError"), phoneError = document.querySelector("#phoneError");
     //
     // const regEmail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
