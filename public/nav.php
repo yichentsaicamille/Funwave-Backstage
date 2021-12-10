@@ -106,7 +106,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
                 echo "active";
             }else if(($activePage === 'member-edit')) {
                 echo "active";
-            }else if(($activePage === 'create-member')) {
+            }else if(($activePage === 'member-create')) {
                 echo "active";
             }else {
                 echo "";
