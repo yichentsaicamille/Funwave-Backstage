@@ -1,8 +1,7 @@
 <?php
-if(isset($_POST["action"])&&($_POST["action"]=="add")){
     require_once("method/pdo-connect.php");
     require_once("./public/admin-if-login.php");
-
+if(isset($_POST["action"])&&($_POST["action"]=="add")){
     if (empty($_POST["course_code"])) {
         echo "沒有輸入資料<br>";
 
@@ -41,7 +40,7 @@ if(isset($_POST["action"])&&($_POST["action"]=="add")){
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php require_once("./public/admin-header-logined.php") ?>
+    <?php require_once("./public/admin-header-logined.php") ?>
         <!--menu-->
         <aside class="col-lg-2 navbar-side shadow-sm">
             <?php require_once("./public/nav.php") ?>
