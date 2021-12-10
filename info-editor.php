@@ -1,5 +1,6 @@
 <?php
 require_once("./method/pdo-connect.php");
+require_once("./public/admin-if-login.php");
 if (isset($_GET["info_id"])) {
     $info_id = $_GET["info_id"];
 } else {
@@ -34,7 +35,7 @@ try {
 <body>
 <div class="container-fluid">
     <div class="row wrap d-flex ">
-        <?php require_once("./public/header.php") ?>
+    <?php require_once("./public/admin-header-logined.php"); ?>
         <aside class="col-lg-2 navbar-side shadow-sm">
             <?php require_once("./public/nav.php") ?>
         </aside>
@@ -55,7 +56,7 @@ try {
                         <div class="d-flex align-items-center  justify-content-end">
                             <div class="col-md-5 d-flex justify-content-center align-items-center">
                                 <div>
-                                    <img id="preview-photo" class="photo-img cover-fit " src="images/information/<?= $value["info_image"] ?>">
+                                    <img id="preview-photo" class="photo-img cover-fit d-none" src="images/information/<?= $value["info_image"] ?>">
                                 </div>
                             </div>
                             <input type="file" class="form-control form-control-sm" name="info_image" id="photo">
