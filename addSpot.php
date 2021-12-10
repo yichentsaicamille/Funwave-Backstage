@@ -1,7 +1,7 @@
 <?php
-if(isset($_POST["action"])&&($_POST["action"]=="add")) {
     require_once("method/pdo-connect.php");
     require_once("./public/admin-if-login.php");
+if(isset($_POST["action"])&&($_POST["action"]=="add")) {
     $valid=1;
     $sql_query = "INSERT INTO spot_list (spot_code ,spot_name ,spot_location,valid) VALUES (?, ?, ? ,?)";
     $stmt = $db_host->prepare($sql_query);
