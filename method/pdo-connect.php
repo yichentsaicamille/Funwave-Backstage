@@ -17,4 +17,7 @@ try{
     echo "error: ".$e->getMessage();
 }
 
+
+//設定時區 --->ini檔設定失效的情況
+date_default_timezone_set("Asia/Taipei");
 ?>

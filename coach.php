@@ -109,11 +109,11 @@ try {
                 <a role="button" href="coach-create.php" class="btn btn-primary text-nowrap">新增</a>
             </div>
             <div class="d-flex justify-content-between align-items-center">
-                <label for="" class="me-2">搜尋</label>
+                <!-- <label for="" class="me-2">搜尋</label> -->
                 <form action="coach.php" method="get">
                     <div class="d-flex">
                         <input class="form-control me-2" type="search" name="search"
-                               value="<?php if (isset($search)) echo $search; ?>">
+                               value="<?php if (isset($search)) echo $search; ?>" placeholder="請輸入教練姓名">
                         <button class="btn btn-primary text-nowrap" type="submit">搜尋</button>
                     </div>
                 </form>
@@ -123,7 +123,7 @@ try {
             <!--content-->
             <div class="table-wrap">
                 <?php if ($coach_rows > 0) :  ?>
-                    <table class="table table-bordered align-middle text-center my-3">
+                    <table class="table table-control table-striped align-middle text-center my-3">
                         <thead>
                         <tr>
                             <th>查看</th>
@@ -191,7 +191,7 @@ try {
                     <?php endif; ?>
 
                 <?php else : ?>
-                    沒有課程資料
+                    沒有教練資料
                 <?php endif; ?>
             </div>
 
