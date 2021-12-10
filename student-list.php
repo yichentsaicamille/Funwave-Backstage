@@ -1,5 +1,6 @@
 <?php
 require_once("method/pdo-connect.php");
+require_once("./public/admin-if-login.php");
 
 //所有課程的SQL敘述 放進預備語法
 $sql_query="SELECT * FROM student_list  ";
@@ -90,7 +91,7 @@ try{
 <body>
 <div class="container-fluid">
     <div class="row wrap d-flex">
-                <?php require_once("./public/header.php") ?>
+    <?php require_once("./public/admin-header-logined.php") ?>
         <!--menu-->
         <aside class="col-lg-2 navbar-side shadow-sm">
                         <?php require_once("./public/nav.php") ?>

@@ -1,7 +1,7 @@
 <?php
-
 if(isset($_POST["action"])&&($_POST["action"]=="add")) {
     require_once("method/pdo-connect.php");
+    require_once("./public/admin-if-login.php");
     $valid=1;
     $sql_query = "INSERT INTO spot_list (spot_code ,spot_name ,spot_location,valid) VALUES (?, ?, ? ,?)";
     $stmt = $db_host->prepare($sql_query);
@@ -33,7 +33,7 @@ if(isset($_POST["action"])&&($_POST["action"]=="add")) {
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php require_once("./public/header.php") ?>
+        <?php require_once("./public/admin-header-logined.php"); ?>
         <!--menu-->
         <aside class="col-lg-2 navbar-side shadow-sm">
             <?php require_once("./public/nav.php") ?>

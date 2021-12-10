@@ -5,6 +5,7 @@ if(isset($_GET["id"])){
     $coach_id=0;
 }
 require_once ("./method/pdo-connect.php");
+require_once("./public/admin-if-login.php");
 $sql="SELECT * FROM genre 
     JOIN coach ON genre.genre_id = coach.genre_id 
 WHERE coach_id='$coach_id' AND coach_valid=1 
@@ -23,7 +24,7 @@ try {
 <!doctype html>
 <html lang="en">
 <head>
-    <title>查看教練</title>
+    <title>Coach Content</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,7 +34,7 @@ try {
 <body>
 <div class="container-fluid">
     <div class="row">
-    <?php require_once("./public/header.php") ?>
+    <?php require_once("./public/admin-header-logined.php"); ?>
             <!--menu-->
             <aside class="col-lg-2 navbar-side shadow-sm">
                 <?php require_once("./public/nav.php") ?>
@@ -59,8 +60,8 @@ try {
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <label for="photo" class="form-label">照片</label>
-                        <input type="file" class="form-control" id="photo" value="<?=$row["coach_photo"]?>" readonly>
+                        <label for="photo" class="form-label d-none">照片</label>
+                        <input type="file" class="form-control d-none" id="photo" value="<?=$row["coach_photo"]?>" readonly>
                     </div>
                     <div class="col-md-5">
                         <label for="name" class="form-label">姓名</label>

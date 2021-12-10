@@ -5,6 +5,7 @@ if (isset($_GET["id"])) {
     $coach_id = 0;
 }
 require_once("./method/pdo-connect.php");
+require_once("./public/admin-if-login.php");
 $sql = "SELECT coach.*, genre.genre_id FROM genre 
     JOIN coach ON genre.genre_id = coach.genre_id 
 WHERE coach_id='$coach_id' AND coach_valid=1 
@@ -26,7 +27,7 @@ try {
 <!doctype html>
 <html lang="en">
 <head>
-    <title>修改教練</title>
+    <title>Coach Edit</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -46,7 +47,7 @@ try {
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php require_once("./public/header.php") ?>
+        <?php require_once("./public/admin-header-logined.php"); ?>
         <!--menu-->
         <aside class="col-lg-2 navbar-side shadow-sm">
             <?php require_once("./public/nav.php") ?>
@@ -108,7 +109,7 @@ try {
                     <div class="col-md-5">
                         <label for="account" class="form-label">帳號</label>
                         <input type="text" class="form-control" id="account" name="coach_account"
-                               value="<?= $row["coach_account"] ?>" placeholder="請輸入帳號" required>
+                               value="<?= $row["coach_account"] ?>" placeholder="請輸入帳號" required readonly>
                         <div id="accountError" class="text-danger mb-2"></div>
                     </div>
                     <div class="col-md-5 password-ipt">

@@ -1,5 +1,6 @@
 <?php
 require_once("method/pdo-connect.php");
+require_once("./public/admin-if-login.php");
 
 if(isset($_POST["action"])&&($_POST["action"]=="update")){
 
@@ -50,7 +51,7 @@ if(isset($_POST["action"])&&($_POST["action"]=="update")){
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php require_once("./public/header.php") ?>
+    <?php require_once("./public/admin-header-logined.php"); ?>
         <!--menu-->
         <aside class="col-lg-2 navbar-side shadow-sm">
             <?php require_once("./public/nav.php") ?>

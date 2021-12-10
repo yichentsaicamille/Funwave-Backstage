@@ -88,7 +88,7 @@ try {
                 </div>
                 <form action="member-list.php" method="get">
                     <div class="d-flex">
-                        <input class="form-control me-2" type="search" name="search" value="<?php if (isset($search)) echo $search; ?>">
+                        <input class="form-control me-2" type="search" name="search" value="<?php if (isset($search)) echo $search; ?>" placeholder="請輸入搜尋姓名">
                         <!--                        <button class="btn btn-secondary text-nowrap">搜尋</button>-->
                         <button class="btn btn-primary text-nowrap">搜尋</button>
                     </div>
@@ -99,7 +99,7 @@ try {
                 <!--content-->
                 <div class="table-wrap">
                     <?php if ($memberRows > 0) : ?>
-                        <table class="table table-bordered align-middle my-3">
+                        <table class="table table-control table-striped align-middle my-3">
                             <thead>
                                 <tr>
                                     <th>查看</th>

@@ -1,5 +1,6 @@
 <?php
 require_once("method/pdo-connect.php");
+require_once("./public/admin-if-login.php");
 
 $spot_code=$_GET["spot_code"];
 
@@ -30,7 +31,7 @@ try{
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php require_once("./public/header.php") ?>
+    <?php require_once("./public/admin-header-logined.php"); ?>
         <!--menu-->
         <aside class="col-lg-2 navbar-side shadow-sm">
             <?php require_once("./public/nav.php") ?>

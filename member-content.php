@@ -34,45 +34,72 @@ try {
                 <?php require_once("./public/nav.php") ?>
             </aside>
             <!--/menu-->
-            <div class="col-lg-9 button-group">
-                <div class="d-flex justify-content-end align-items-center mt-3">
+            <div class="col-lg-9 button-group shadow-sm">
+                <div class="d-flex align-items-center mt-3">
                     <a role="button" href="./member-list.php" class="btn btn-primary">返回</a>
                 </div>
-                <article class="article col-lg-9 mt-5">
-                    <?php if ($memberExist > 0) : ?>
-                        <table class="table table-bordered table-sm">
-                            <?php foreach ($rowMember as $value) : ?>
-                                <tr>
-                                    <th>頭像</th>
-                                    <td><img class="content-img" src="./images/member/<?= $value["member_photo"] ?>"></td>
-                                </tr>
-                                <tr>
-                                    <th>姓名</th>
-                                    <td><?= $value["member_name"] ?></td>
-                                </tr>
-                                <tr>
-                                    <th>性別</th>
-                                    <td><?= $value["member_gender"] ?></td>
-                                </tr>
-                                <tr>
-                                    <th>電話</th>
-                                    <td><?= $value["member_phone"] ?></td>
-                                </tr>
-                                <tr>
-                                    <th>信箱</th>
-                                    <td><?= $value["member_email"] ?></td>
-                                </tr>
-                                <tr>
-                                    <th>地址</th>
-                                    <td><?= $value["member_address"] ?></td>
-                                </tr>
-                        </table>
-                    <?php endforeach; ?>
-                <?php else : ?>
-                    使用者不存在
-                <?php endif ?>
-                </article>
             </div>
+            <article class="article col-9 shadow-sm">
+            <?php if ($memberExist > 0) : ?>
+                <!--content-->
+                <div>
+                    <?php foreach ($rowMember as $value) : ?>
+                        <form class="row g-3 mt-5 pb-5 d-flex justify-content-center"
+                              action="./method/doUpdateMember.php" method="post">
+                            <input type="hidden" name="member_id" value="<?= $value["member_id"] ?>">
+                            <div class="col-md-5 d-flex justify-content-center align-items-center">
+                                <div>
+                                    <img id="preview-photo" class="show-photo cover-fit" src="./images/member/<?= $value["member_photo"] ?>">
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="photo" class="form-label d-none">照片</label>
+                                <input type="file" class="form-control d-none" id="inputGroupFile02" name="member_photo">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="name" class="form-label">姓名</label>
+                                <input type="text" class="form-control" id="name" name="member_name"
+                                       placeholder="<?= $value["member_name"] ?>" readonly>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="gender" class="form-label">性別</label>
+                                <select id="gender" name="member_gender" class="form-select"
+                                        aria-label="Default select example" disabled>
+                                    <option selected><?=$value["member_gender"] ?></option>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="phone" class="form-label">電話</label>
+                                <input type="text" class="form-control" id="phone" name="member_phone"
+                                       placeholder="<?= $value["member_phone"] ?>" readonly>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="email" class="form-label">信箱</label>
+                                <input type="email" class="form-control" id="email" name="member_email"
+                                       placeholder="<?= $value["member_email"] ?>" readonly>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="account" class="form-label">帳號</label>
+                                <input type="text" class="form-control" id="account" name="member_account"
+                                       placeholder="<?= $value["member_account"] ?>" readonly>
+                            </div>
+                            <div class="col-md-5 password-ipt">
+                                <label for="password" class="form-label">密碼</label>
+                                <input type="password" class="form-control" id="password" name="member_password"
+                                       placeholder="請輸入密碼" value="<?= $value["member_password"] ?>" readonly>
+                            </div>
+                            <div class="col-10">
+                                <label for="address" class="form-label">地址</label>
+                                <input type="text" class="form-control" id="address" name="member_address"
+                                       placeholder="<?= $value["member_address"] ?>" readonly>
+                            </div>
+                        </form>
+                    <?php endforeach; ?>
+                </div>
+            <?php else : ?>
+                使用者不存在
+            <?php endif ?>
+        </article>
         </div>
     </div>
 </body>

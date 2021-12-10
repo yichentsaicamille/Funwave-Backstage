@@ -1,5 +1,6 @@
 <?php
 require_once("method/pdo-connect.php");
+require_once("./public/admin-if-login.php");
 
 ////總筆數 mysqli寫法
 //$sqlTotal="SELECT * FROM course_schedule";
@@ -100,10 +101,10 @@ try{
 <body>
 <div class="container-fluid">
     <div class="row wrap d-flex">
-                <?php require_once("./public/header.php") ?>
+        <?php require_once("./public/admin-header-logined.php"); ?> 
         <!--menu-->
         <aside class="col-lg-2 navbar-side shadow-sm">
-                        <?php require_once("./public/nav.php") ?>
+            <?php require_once("./public/nav.php") ?>
         </aside>
         <!--/menu-->
         <div class="col-lg-9 button-group shadow-sm">

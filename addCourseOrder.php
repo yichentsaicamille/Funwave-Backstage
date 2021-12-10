@@ -1,6 +1,7 @@
 <?php
 //新增時先讀取資料庫 取得目前訂單編號  在UI顯示結果+1 取得最新流水號
 require_once("method/pdo-connect.php");
+require_once("./public/admin-if-login.php");
 $now=date("Y-m-d H:i:s");
 
 
@@ -52,7 +53,7 @@ if(isset($_POST["action"])&&($_POST["action"]=="add")) {
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php require_once("./public/header.php") ?>
+        <?php require_once("./public/admin-header-logined.php") ?>
         <!--menu-->
         <aside class="col-lg-2 navbar-side shadow-sm">
             <?php require_once("./public/nav.php") ?>

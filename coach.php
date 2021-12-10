@@ -1,5 +1,6 @@
 <?php
 require_once("./method/pdo-connect.php");
+// require_once("./public/admin-if-login.php");
 $sql = "select * from coach inner join genre on genre.genre_id = coach.genre_id";
 $stmt = $db_host->prepare($sql);
 
@@ -73,7 +74,7 @@ try {
 <html lang="en">
 
 <head>
-    <title>教練管理</title>
+    <title>Coach List</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -98,7 +99,7 @@ try {
 <body>
 <div class="container-fluid">
     <div class="row wrap d-flex">
-        <?php require_once("./public/header.php") ?>
+    <?php require_once("./public/admin-header-logined.php") ?>
         <!--menu-->
         <aside class="col-lg-2 navbar-side shadow-sm">
             <?php require_once("./public/nav.php") ?>
@@ -113,7 +114,7 @@ try {
                 <form action="coach.php" method="get">
                     <div class="d-flex">
                         <input class="form-control me-2" type="search" name="search"
-                               value="<?php if (isset($search)) echo $search; ?>" placeholder="請輸入教練姓名">
+                               value="<?php if (isset($search)) echo $search; ?>" placeholder="請輸入搜尋姓名">
                         <button class="btn btn-primary text-nowrap" type="submit">搜尋</button>
                     </div>
                 </form>

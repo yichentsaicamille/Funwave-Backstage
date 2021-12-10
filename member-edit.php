@@ -94,7 +94,7 @@ try {
                             </div>
                             <div class="col-md-5">
                                 <label for="account" class="form-label">帳號</label>
-                                <input type="text" class="form-control-plaintext" id="account" name="member_account"
+                                <input type="text" class="form-control" id="account" name="member_account"
                                        placeholder="<?= $value["member_account"] ?>" readonly>
                             </div>
                             <div class="col-md-5 password-ipt">

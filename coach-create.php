@@ -1,3 +1,7 @@
+<?php 
+require_once("./method/pdo-connect.php");
+require_once("./public/admin-if-login.php");
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,15 +17,15 @@
         .password-img img {
             height: 20px;
             position: absolute;
-            top: 42px;
-            right: 15px;
+            top: 42px !important;
+            right: 15px !important;
         }
     </style>
 </head>
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php require_once("./public/header.php") ?>
+        <?php require_once("./public/admin-header-logined.php") ?>
         <!--menu-->
         <aside class="col-lg-2 navbar-side shadow-sm">
             <?php require_once("./public/nav.php") ?>

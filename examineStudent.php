@@ -1,5 +1,6 @@
 <?php
 require_once("method/pdo-connect.php");
+require_once("./public/admin-if-login.php");
 
 $student_id=$_GET["student_id"];
 $sql_select="SELECT student_id ,student_name ,student_gender ,student_birthday ,student_phone ,student_email ,student_address ,s_emergency_contact ,s_emergency_contact_no FROM student_list WHERE student_id=?";
@@ -28,7 +29,7 @@ try{
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php require_once("./public/header.php") ?>
+    <?php require_once("./public/admin-header-logined.php"); ?>
         <!--menu-->
         <aside class="col-lg-2 navbar-side shadow-sm">
             <?php require_once("./public/nav.php") ?>
