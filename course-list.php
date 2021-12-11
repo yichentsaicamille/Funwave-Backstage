@@ -154,7 +154,7 @@ try{
             <div class="d-flex justify-content-between align-items-center">
                 <div class="my-3">
                     <!-- <a role="button" href="service.php" class="btn btn-primary">返回</a> -->
-                    <a role="button" href="addCourse.php" class="btn btn-primary">新增課程</a>
+                    <a role="button" href="addCourse.php" class="btn btn-primary"><i class="fas fa-plus"></i> 新增課程</a>
                 </div>
                 <div class="d-flex">
                     <form action="" method="get" class="me-2">

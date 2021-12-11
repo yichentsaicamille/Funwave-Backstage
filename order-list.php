@@ -262,7 +262,7 @@ if (isset($_GET["order_id"])){
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Order list</title>
+    <title>Order List</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -381,9 +381,11 @@ if (isset($_GET["order_id"])){
             <?php if(isset($p)): ?>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
+                    <li class="page-item"><a class="page-link" href="order-list.php?p=1">第一頁</a></li>
                         <?php for($i=1; $i<$pageCount+1; $i++): ?>
                             <li class="page-item <?php if($p==$i)echo "active" ?>"><a class="page-link" href="order-list.php?p=<?=$i?>"><?=$i?></a></li>
                         <?php endfor; ?>
+                        <li class="page-item"><a class="page-link" href="order-list.php?p=<?= $pageCount ?>">最末頁</a></li>
                     </ul>
                 </nav>
             <?php endif; ?>
