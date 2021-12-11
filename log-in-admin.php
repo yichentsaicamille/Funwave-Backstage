@@ -34,14 +34,8 @@ if (isset($_SESSION["admin"])) {
                 <div class="container-fluid d-flex justify-content-between">
                     <a class="logo-text" href="./index.php"><img class="logo" src="./images/FUN浪-logos.jpeg" alt="">&nbsp;FUN浪</a>
                     <ul class="d-flex list-unstyled home-main">
-                        <li><a class="logoutButton" href="./log-in-admin.php"><span style="color: white">登入</span></a></li>
-                        <li><a class="<?php
-                            if (($activePage === 'sign-up')) {
-                                echo "active";
-                            } else {
-                                echo "";
-                            }
-                            ?> logoutButton" href="./sign-up.php"><span style="color: white">註冊</span></a></li>
+                        <li><a class="logoutButton" href="./log-in-admin.php">登入</a></li>
+                        <li><a class="logoutButton" href="./sign-up.php">註冊</a></li>
                     </ul>
                 </div>
             </header>

@@ -163,16 +163,6 @@ tbody tr td {
 .home-main li{
     padding: 20px 5px 10px 8px;
 }
-.home-main li a{
-    text-decoration: none;
-    color: rgb(145, 143, 143);
-}
-.home-main li a:hover{
-    color: #0a58ca;
-}
-.home-main li a.active{
-    color: #0a58ca;
-}
 .sign-up-content{
     background: #fff;
     margin: 150px auto 15px;
