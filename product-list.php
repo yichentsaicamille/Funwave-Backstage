@@ -13,7 +13,6 @@ if(isset($_POST['add_cart'])){
     if (isset($_SESSION['cart'])){
 //      從$_SESSION['cart']中，找出key:product_id對應的值
         $item_array_id=array_column($_SESSION['cart'],"product_id");
-
 //      如果點選的$_POST['product_id']有存在$item_array_id之中
         if (in_array($_POST['product_id'], $item_array_id)){
             echo "<script>alert('Product is already added in the cart!')</script>";
@@ -21,7 +20,8 @@ if(isset($_POST['add_cart'])){
         }else{
             $count = count($_SESSION['cart']);
             $item_array=array(
-                'product_id'=>$_POST['product_id']
+                'product_id'=>$_POST['product_id'],
+                'quantity'=>1
             );
             $_SESSION['cart'][$count] =$item_array;
 //            print_r($_SESSION['cart']);
@@ -29,13 +29,18 @@ if(isset($_POST['add_cart'])){
     }else{
 //        最開始$_SESSION['cart']還未有值。給入第一個值。
         $item_array=array(
-                'product_id'=>$_POST['product_id']
+                'product_id'=>$_POST['product_id'],
+                'quantity'=>1
         );
         $_SESSION['cart'][0]=$item_array;
 //        print_r($_SESSION['cart']);
     }
 }
 //unset($_SESSION["cart"]);
+// var_dump($_SESSION['cart']);
+//var_dump($_SESSION['cart'][0]);
+//var_dump(array_column($_SESSION['cart'], 'product_id'));
+//array(3) { [0]=> string(1) "1" [1]=> string(1) "2" [2]=> string(1) "3" }
 
 ?>
 
