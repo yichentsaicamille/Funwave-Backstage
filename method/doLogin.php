@@ -26,7 +26,7 @@ try {
             "member_name"=>$rowMember["member_name"]
         ];
         $_SESSION["member"]=$member; 
-        // header("location: ../member-list.php");
+        header("location: ../shopping-list.php");
     }else{
         header("location: ../log-in.php");
     }

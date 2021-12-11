@@ -2,6 +2,7 @@
 
 <?php
 require_once ("pdo-connect.php");
+require_once("../public/if-login.php");
 //用session帶購物車資訊(product_id)結合products，以取得product_price
 $productId = array_column($_SESSION['cart'], "product_id");
 //var_dump($productId);
@@ -118,13 +119,23 @@ unset($_SESSION['cart']);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php require_once("../public/css.php") ?>
-
+    <style>
+        body {
+            background: #f3f3f3;
+        }
+        .article {
+            background: #fff;
+            margin: 15px auto;
+            padding: 0px 10px;
+        }
+    </style>
 </head>
 <body>
+<?php require_once("../public/cart_header.php") ?>
 <div class="container-fluid">
-    <div class="row wrap d-flex">
-        <article class="article col-lg-9 shadow-sm table-responsive content-group">
-            <div class="text-center d-block">
+    <div class="row wrap d-flex justify-content-center mt-5">
+        <article class="article col-lg-7 shadow-sm table-responsive content-group mt-5">
+            <div class="text-center d-block py-5">
                 <i class="fas fa-check-circle fa-5x mt-5 mb-4 text-success"></i>
                 <h2 class="mb-5">訂單已送出!</h2>
             </div>

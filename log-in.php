@@ -2,7 +2,7 @@
 // $activePage = basename($_SERVER['PHP_SELF'], ".php");
 session_start();
 if (isset($_SESSION["member"])) {
-    header("location: ./member-list.php");
+    header("location: ./shopping-list.php");
 }
 ?>
 <!doctype html>
@@ -42,7 +42,7 @@ if (isset($_SESSION["member"])) {
             <!--menu-->
             <div class="row d-flex">
                 <!-- <aside class="col-lg-2 navbar-side shadow-sm">
-                    <?php require_once("./public/nav.php") ?>
+
                 </aside> -->
                 <div class="sign-up-content col-lg-4 shadow-sm p-5">
                     <form id="form" action="./method/doLogin.php" method="post">

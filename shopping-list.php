@@ -1,5 +1,6 @@
 <?php
 require_once ("./method/pdo-connect.php");
+require_once("./public/if-login.php");
 $sqlProductList="SELECT * FROM products WHERE product_valid='1' ORDER BY product_id ASC";
 $stmtProductList=$db_host->prepare($sqlProductList);
 try{
@@ -77,7 +78,7 @@ if(isset($_POST['add_cart'])){
             <?php foreach ($rowProductList as $value): ?>
                 <tr class="text-nowrap">
                     <td>
-                        <form action="product-list.php" method="post">
+                        <form action="shopping-list.php" method="post">
                             <button type="submit" name="add_cart" class="btn btn-warning"><i class="fas fa-shopping-cart"></i></button>
                             <input type="hidden" name="product_id" value="<?=$value["product_id"]?>">
                         </form>

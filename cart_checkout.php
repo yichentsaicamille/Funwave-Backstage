@@ -3,6 +3,7 @@
 <?php
 //把所選數量放進session
 require_once("./method/pdo-connect.php");
+require_once("./public/if-login.php");
 
 $cart=$_POST["cart"];
 //json_decode()從JSON中提取資料。$assoc，TRUE，函式將返回一個關聯陣列，FALSE，函式將返回物件。
@@ -24,20 +25,35 @@ $_SESSION['cart']=$cart;
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php require_once("./public/css.php") ?>
     <style>
-
+        /* .container-fluid {
+            padding-left: 0px;
+        } */
+        .header {
+            background: #212529;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+        .article {
+            background: #fff;
+            margin: 15px auto;
+            padding: 0px 10px;
+        }
+        .content-group {
+            margin-top: 120px;
+        }
     </style>
 
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row wrap d-flex">
-        <?php require_once("./public/header.php") ?>
+    <div class="row d-flex d-flex justify-content-center">
+        <?php require_once("./public/cart_header.php") ?>
         <!--menu-->
-        <aside class="col-lg-2 navbar-side shadow-sm">
+        <!-- <aside class="col-lg-2 navbar-side shadow-sm">
             <?php require_once("./public/nav.php") ?>
-        </aside>
+        </aside> -->
         <!--/menu-->
-        <article class="article col-lg-9 shadow-sm table-responsive content-group">
+        <article class="article col-lg-10 shadow-sm table-responsive content-group">
             <div class="table-wrap">
                 <form action="./method/doInsertOrder.php" method="post" class="m-3">
                     <div class="row d-flex justify-content-center">

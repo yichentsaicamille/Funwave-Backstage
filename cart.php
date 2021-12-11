@@ -1,5 +1,6 @@
 <?php
 require_once("./method/pdo-connect.php");
+require_once("./public/if-login.php");
 //product-list.php已設好session
 $productId = array_column($_SESSION['cart'], "product_id");
 //implode()把陣列元素組合為一個字串。
@@ -48,7 +49,7 @@ $products = $stmt->fetchAll();
 <body>
 <?php require_once("./public/cart_header.php") ?>
 <div class="container-fluid">
-    <div class="row px-5">
+    <div class="row px-5 mt-5">
         <div class="col-md-7">
             <div class="pt-4">
                 <h6>My Cart</h6>
@@ -118,7 +119,7 @@ $products = $stmt->fetchAll();
                     </div>
                 </div>
                 <div class="d-flex justify-content-evenly mt-5">
-                    <a role="button" class="btn btn-secondary" href="product-list.php">繼續購物</a>
+                    <a role="button" class="btn btn-secondary" href="shopping-list.php">繼續購物</a>
                     <button type="submit" class="btn btn-primary" >下一步</button>
                 </div>
             </form>

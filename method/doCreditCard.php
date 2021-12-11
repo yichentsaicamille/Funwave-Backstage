@@ -1,3 +1,7 @@
+<?php
+require_once("pdo-connect.php");
+require_once("../public/if-login.php");
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,47 +12,59 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            background: #f3f3f3;
+        }
+        .card-content {
+            margin: 15px auto;
+            background: #fff;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <img src="../images/order/VerifiedByVisa.svg" alt="img" title="Tim!" height="150" width="" class="">
-            <div class="col-6">
-                <div class="card mt-3 p-2 mt-5">
-                    <div class="form-row form-group mt-2">
-                        <label for="" class="col-sm-2 col-form-label">卡號</label>
-                        <div class="col-sm-10">
-                            <div class="form-row">
-                                <div class="col">
-                                    <input type="text" class="form-control card-input" maxlength="4" required>
-                                </div>
-                                <div class="col">
-                                    <input type="text" class="form-control card-input" maxlength="4" required>
-                                </div>
-                                <div class="col">
-                                    <input type="text" class="form-control card-input" maxlength="4" required>
-                                </div>
-                                <div class="col">
-                                    <input type="text" class="form-control card-input" maxlength="4" required>
+<?php require_once("../public/cart_header.php") ?>
+    <div class="container-fluid">
+        <div class="d-flex flex-column justify-content-center mt-5">
+            <div class="row col-8 d-flex justify-content-center align-items-center card-content shadow-sm py-5">
+                <img src="../images/order/VerifiedByVisa.svg" alt="img" title="Tim!" height="150" width="" class="">
+                <div class="col-7">
+                    <div class="card mt-3 p-2 mt-5">
+                        <div class="form-row form-group mt-2">
+                            <label for="" class="col-sm-2 col-form-label">卡號</label>
+                            <div class="col-sm-10">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" class="form-control card-input" maxlength="4" required>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control card-input" maxlength="4" required>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control card-input" maxlength="4" required>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control card-input" maxlength="4" required>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="form-row form-group mt-1">
+                            <label for="" class="col-sm-2 col-form-label">過期時間</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="YY/MM" required>
+                            </div>
+                            <label for="" class="col-sm-2 col-form-label">驗證碼</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" maxlength="3" required>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-row form-group mt-1">
-                        <label for="" class="col-sm-2 col-form-label">過期時間</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" placeholder="YY/MM" required>
-                        </div>
-                        <label for="" class="col-sm-2 col-form-label">驗證碼</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" maxlength="3" required>
-                        </div>
+                    <div class="d-flex justify-content-end mt-3">
+                        <a role="button" class="btn btn-secondary" href="doCreditCardSuccess.php">確認結帳</a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="d-flex justify-content-center mt-3">
-            <a role="button" class="btn btn-secondary" href="doCreditCardSuccess.php">確認結帳</a>
         </div>
 
     </div>
