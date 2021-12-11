@@ -3,11 +3,17 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 :root {
-    --green-color: #77CFB7;
-    --blue-color: #81D7D3;
-    --pink-color: #E96A97;
-    --gray-color: #98A0A5;
-    --orange-color: #FF7F6A;
+    /* --green-color: #77CB7; */
+    /* --blue-color: #81D7D3; */
+    /* --pink-color: #E96A97; */
+    /* --gray-color: #98A0A5; */
+    /* --orange-color: #FF7F6A; */
+    --opal-color: #77cfb7;
+    --aruba-blue-color: #81d7d3;
+    --azalea-pink-color: #e96a97;
+    --quarry-color: #98a0a5;
+    --fresh-salmon-color: #ff7f6a;
+    --skin-color: rgb(243, 237, 230);
 }
 .cover-fit{
     width: 100%;
@@ -21,21 +27,36 @@ body {
     position: relative;
 }
 .header {
-    background: #fff;
+    background: var(--quarry-color);
     position: fixed;
     z-index: 100;
 }
+.header-wrapper{
+    background: var(--quarry-color);
+    padding: none;
+}
 .logo {
-    width: 62px;
+    width: 70px;
+    height: 70px;
 }
 .logo-text {
-    font-family: 'Dancing Script', cursive;
+    /* font-family: 'Dancing Script', cursive; */
     text-decoration: none;
     font-size: 36px;
-    font-style: italic;
+    /* font-style: italic;  */
     font-weight: bold;
-    color: var(--orange-color);
-    text-shadow: 0.1em 0.1em 0.2em black
+    color: var(--skin-color);
+    /* text-shadow: 0.1em 0.1em 0.2em rgb(100, 100, 100) */
+}
+.logo-text:hover{
+    color: var(--skin-color);
+}
+.logoutButton{
+    text-decoration: none;
+    color: #fff;
+}
+.logoutButton:hover{
+    color: var(--aruba-blue-color);
 }
 .navbar-side {
     background: #fff;
@@ -54,7 +75,7 @@ body {
 .nav-item a {
     font-size: 20px;
     font-weight: bold;
-    color: var(--gray-color);
+    color: var(--quarry-color);
     display: block;
     padding: 10px 0px;
     text-decoration: none;
@@ -62,13 +83,15 @@ body {
 }
 
 .nav-item a.active {
-    color: #0a58ca;
+    /* color: #0a58ca; */
+    color: var(--aruba-blue-color);
 }
 /*.nav-link a:hover {*/
 /*    color: var(--pink-color);*/
 /*}*/
 .nav-item a:focus, .nav-item a:hover {
-    color: #0a58ca;
+    /* color: #0a58ca; */
+    color: var(--aruba-blue-color);
 }
 /*.nav-link.active {*/
 /*    color: var(--orange-color);*/
@@ -155,4 +178,8 @@ tbody tr td {
     margin: 150px auto 15px;
     padding: 10px;
     /* margin-left: 300px; */
+}
+.home-page{
+    margin-left: 12px;
+    height: 100vh;
 }

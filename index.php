@@ -16,13 +16,16 @@ require_once("./public/admin-if-login.php");
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <?php require_once("./public/admin-header-logined.php"); ?>
-            <!--menu-->
-            <aside class="col-lg-2 navbar-side shadow-sm">
+<div class="container-fluid">
+        <div class="row wrap d-flex">
+            <?php require_once("./public/admin-header-logined.php") ?>
+            <aside class="navbar-side shadow-sm">
                 <?php require_once("./public/nav.php") ?>
             </aside>
+            <div class="container-fluid">
+                <img class="cover-fit home-page" src="./images/home-page3.png" alt="">
+            </div>
+
         </div>
     </div>
 </body>
