@@ -15,9 +15,18 @@ if (isset($_SESSION["member"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php require_once("./public/css.php") ?>
     <style>
+        .log-in-wrap {
+            margin: 0 auto;
+        }
+        .sign-up-content {
+            background: #fff;
+            margin: 85px auto;
+            padding: 10px;
+        }
         .password-ipt {
             position: relative;
         }
+
         .password-img img {
             height: 20px;
             position: absolute;
@@ -30,21 +39,50 @@ if (isset($_SESSION["member"])) {
 <body>
     <div class="container-fluid">
         <div class="row">
-            <header class="header shadow-sm">
-                <div class="container-fluid d-flex justify-content-between">
+            <header class="header shadow-sm"></header>
+            <!-- <div class="container-fluid d-flex justify-content-between">
                 <a class="logo-text" href="./index.php"><img class="logo" src="./images/FUN浪-logos.jpeg" alt="">&nbsp;FUN浪</a>
+                <ul class="d-flex list-unstyled home-main">
+                    <li><a class="logoutButton" href="./log-in.php">登入</a></li>
+                    <li><a class="logoutButton" href="./sign-up.php">註冊</a></li>
+                </ul>
+            </div> -->
+
+            <div class="container-fluid d-flex justify-content-between align-items-center navbar navbar-expand-lg navbar-dark bg-dark">
+                <a href="shopping-list.php" class="navbar-brand">
+                    <h3 class="px-5">
+                        <i class="fas fa-shopping-basket"></i> Shopping Cart
+                    </h3>
+                </a>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <a href="cart.php" class="nav-item active">
+                            <h5 class="px-5 cart">
+                                <i class="fas fa-shopping-cart"></i>Cart
+                                <?php
+                                if (isset($_SESSION['cart'])) {
+                                    $count = count($_SESSION['cart']);
+                                    echo "<span id='cart_count' class='text-warning'>$count</span>";
+                                } else {
+                                    echo "<span id='cart_count' class='text-warning'>0</span>";
+                                }
+                                ?>
+                            </h5>
+                        </a>
+                    </div>
                     <ul class="d-flex list-unstyled home-main">
                         <li><a class="logoutButton" href="./log-in.php">登入</a></li>
                         <li><a class="logoutButton" href="./sign-up.php">註冊</a></li>
                     </ul>
                 </div>
+            </div>
             </header>
             <!--menu-->
-            <div class="row d-flex">
+            <div class="row d-flex justify-content-center log-in-wrap">
                 <!-- <aside class="col-lg-2 navbar-side shadow-sm">
 
                 </aside> -->
-                <div class="sign-up-content col-lg-4 shadow-sm p-5">
+                <div class="sign-up-content col-md-4 shadow-sm p-5">
                     <form id="form" action="./method/doLogin.php" method="post">
                         <h1 class="text-center">會員登入</h1>
                         <div class="mb-3">
@@ -52,7 +90,7 @@ if (isset($_SESSION["member"])) {
                             <input id="account" type="text" name="member_account" class="form-control" placeholder="請輸入 3~12 個字元的帳號">
                             <div id="accountError" class="text-danger mb-2"></div>
                         </div>
-                        
+
                         <div class="mb-3 password-ipt">
                             <label for="password">密碼</label>
                             <input id="password" type="password" name="member_password" class="form-control show-on" required placeholder="請輸入密碼"><label class="password-img"><img src="./images/eyes-close.png" alt="JS實現表單中點選小眼睛顯示隱藏密碼框中的密碼" id="eyes"></label>
@@ -68,7 +106,6 @@ if (isset($_SESSION["member"])) {
     </div>
 
     <script>
-
         let form = document.querySelector("#form");
         let submitBtn = document.querySelector("#submitBtn");
         let account = document.querySelector("#account");
