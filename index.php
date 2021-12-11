@@ -23,7 +23,7 @@ require_once("./public/admin-if-login.php");
                 <?php require_once("./public/nav.php") ?>
             </aside>
             <div class="container-fluid">
-                <img class="cover-fit home-page" src="./images/home-page.png" alt="">
+                <img class="cover-fit home-page" src="./images/home-page-update2.png" alt="">
             </div>
 
         </div>
