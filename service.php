@@ -79,7 +79,7 @@ try{
 <!doctype html>
 <html lang="en">
 <head>
-    <title>服務管理</title>
+    <title>Course Order List</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

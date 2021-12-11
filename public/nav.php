@@ -113,7 +113,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
             }
             ?>" href="./member-list.php">會員管理</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="" href="#">評價管理</a>
         </li>
         <li class="nav-item">
@@ -124,6 +124,6 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
         </li>
         <li class="nav-item">
             <a class="" href="#">行事曆管理</a>
-        </li>
+        </li> -->
     </ul>
 </nav>
