@@ -151,7 +151,7 @@ $products = $stmt->fetchAll();
     $(".minus").click(function () {
         let n = $(this).siblings(".quantity").val();
         //當文字框的值減到1時就不再執行n--及後面的程式碼
-        if (n == 1) {
+        if (n == 0) {
             return false;
         }
         n--;

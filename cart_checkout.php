@@ -10,7 +10,7 @@ $cart=json_decode($cart,true);
 //var_dump($cart);
 //echo '<br>';
 
-//直接將替換陣列$cart，入$_SESSION['cart']
+//直接將$_SESSION['cart']的內容替換陣列$cart
 $_SESSION['cart']=$cart;
 //var_dump($_SESSION['cart']);
 ?>
@@ -91,8 +91,6 @@ $_SESSION['cart']=$cart;
                             <button id="bt" class="btn btn-primary" type="submit">送出訂單</button>
                         </div>
                     </div>
-
-
                 </form>
             </div>
         </article>
@@ -117,17 +115,6 @@ $_SESSION['cart']=$cart;
         $('div[id^="delivery"]').hide();
         $(deliveryValue).show();
     });
-
-    // 要確認調整！！！！
-    <?php if (isset($value["receiver"]) && isset($value["receiver_phone"])): ?>
-    window.onload=function(){
-        var obt=document.getElementById("bt");
-        obt.onclick=function(){
-            alert("訂單已送出!");
-        }
-    }
-    <?php else:?>
-    <?php endif; ?>
 
 </script>
 </body>

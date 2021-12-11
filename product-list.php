@@ -37,7 +37,7 @@ if(isset($_POST['add_cart'])){
     }
 }
 //unset($_SESSION["cart"]);
-// var_dump($_SESSION['cart']);
+//var_dump($_SESSION['cart']);
 //var_dump($_SESSION['cart'][0]);
 //var_dump(array_column($_SESSION['cart'], 'product_id'));
 //array(3) { [0]=> string(1) "1" [1]=> string(1) "2" [2]=> string(1) "3" }
