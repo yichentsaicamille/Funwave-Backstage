@@ -34,7 +34,7 @@ if(isset($_POST["action"])&&($_POST["action"]=="add")) {
         echo $e->getMessage();
     }
     //重新導向回到主畫面
-    header("Location: course-order-list.php");
+    header("Location: service.php");
 }
 
 ?>

@@ -30,6 +30,8 @@ try {
         pre {
             white-space: pre-wrap;
             word-wrap: break-word;
+            font-family:Arial, Helvetica, sans-serif;
+            font-size:1rem ;
         }
         tbody tr:hover {
             background: none !important;
