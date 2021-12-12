@@ -1,7 +1,32 @@
-<!--應要有公版介面，require_once路徑卻有錯，先移除，fontawesome也沒有出來-->
-<?php 
+<!--fontawesome先自行帶-->
+<?php
 require_once("pdo-connect.php");
 require_once("../public/if-login.php");
+
+//提取order-list的最新的id，以修改其付款狀態
+$sqlOrderList="SELECT * FROM order_list";
+$stmtOrderList=$db_host->prepare($sqlOrderList);
+try{
+    $stmtOrderList->execute();
+    $rowOrderList=$stmtOrderList->fetchAll(PDO::FETCH_ASSOC);
+    $orderCount=$stmtOrderList->rowCount();
+}catch (PDOException $e){
+    echo $e->getMessage();
+}
+$order_id=$rowOrderList[$orderCount-1]['id'];
+
+//回頭修改order_list的資料付款狀態
+$payment_status='已付款';
+$sqlOrderList="UPDATE order_list SET payment_status='$payment_status' WHERE id='$order_id'";
+$stmtOrderList=$db_host->prepare($sqlOrderList);
+try{
+    $stmtOrderList->execute();
+    $orderCount=$stmtOrderList->rowCount();
+    echo "修改資料完成";
+}catch (PDOException $e){
+    echo "修改資料錯誤: ".$e->getMessage();
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -11,6 +36,9 @@ require_once("../public/if-login.php");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php require_once("../public/css.php") ?>
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.css">
+
     <style>
         body {
             background: #f3f3f3;
@@ -35,8 +63,8 @@ require_once("../public/if-login.php");
             <div class="">
                 <div class="text-center d-block">
                     <i class="fas fa-check-circle fa-5x mt-5 mb-4 text-success"></i>
-                    <h2 class="mb-2">付款成功!</h2>
-                    <h2 class="mb-5">訂單已送出!</h2>
+                    <h3 class="mb-2">付款成功!</h3>
+                    <h3 class="mb-5">訂單已送出!</h3>
                 </div>
             </div>
         </article>
