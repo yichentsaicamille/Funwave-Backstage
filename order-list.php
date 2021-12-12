@@ -338,9 +338,9 @@ if (isset($_GET["order_id"])){
                     </div>
             </form>
         </div>
-        <article class="article col-lg-9 shadow-sm table-responsive">
+        <article class="article col-lg-9 shadow-sm table-responsive px-3 py-2">
             <div class="table-wrap">
-                <table class="table table-bordered m-3 mt-4 text-center">
+                <table class="table table-bordered text-center">
                     <thead>
                     <tr class="text-nowrap">
                         <th>查看內容</th>

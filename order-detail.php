@@ -1,3 +1,4 @@
+<!--是否需要在資料表order-detail添加會員編號欄位。圖片路徑待添加-->
 <?php
 require_once("./method/pdo-connect.php");
 require_once("./public/admin-if-login.php");
@@ -65,7 +66,7 @@ try {
                 <a role="button" href="order-list.php" class="btn btn-primary">返回</a>
             </div>
         </div>
-        <article class="article col-lg-9 shadow-sm table-responsive px-3">
+        <article class="article col-lg-9 shadow-sm table-responsive px-3 py-2">
             <!--content-->
             <div class="table-wrap">
                 <table class="table table-bordered table-sm text-center">
