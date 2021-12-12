@@ -68,6 +68,11 @@ if (isset($_GET["order_id"])) {
 }
 
 //    篩選訂單編號後，清除篩選要顯示完整清單！empty() 但非0
+if (isset($order_id)) {
+
+} else {
+    $order_id = 0;
+}
 if (empty($_GET["order_id"]) && $order_id !== "0")  {
     $filter_totalCount=1;
     $sqlOrderList = "SELECT * FROM order_list ORDER BY id ASC";
@@ -192,11 +197,15 @@ if (isset($_GET["status"])){
 
 // 篩選status後，網址仍有status，為isset()，但empty()
 //如果網址存在order_id，不繼續檢視status的empty()
+if (isset($status)) {
+
+} else {
+    $status = 0;
+}
 if (isset($_GET["order_id"])){
 
 }else if(empty($_GET["status"])){
     $filter_totalCount=1;
-    $status=$_GET["status"];
     $sqlOrderList = "SELECT * FROM order_list ORDER BY id ASC";
     $stmtOrderList = $db_host->prepare($sqlOrderList);
     try {
