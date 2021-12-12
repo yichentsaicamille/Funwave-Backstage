@@ -128,6 +128,7 @@ thead tr th {
     white-space:nowrap;
 }
 tbody tr:hover {
+    transition: .4s;
     background: #e4e4e4;
 }
 tbody tr td {

@@ -81,7 +81,7 @@ require_once("./public/admin-if-login.php");
                         <label for="password" class="form-label">密碼</label>
                         <input type="password" class="form-control show-on" id="password" name="coach_password"
                                placeholder="請輸入密碼" id="eyes" required>
-                        <label class="password-img"><img src="./images/eyes-open.png" id="eyes"></label>
+                        <label class="password-img"><img src="./images/eyes-close.png" id="eyes"></label>
                         <div id="passwordError" class="text-danger"></div>
                     </div>
                     <div class="col-10">
