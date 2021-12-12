@@ -141,7 +141,12 @@ try {
         white-space: pre-wrap;
         word-wrap: break-word;
     } */
-    
+    .name-block{
+        min-width: 200px;
+    }
+    .item-block{
+        min-width: 140px;
+    }
     </style>
 
 </head>
@@ -200,19 +205,19 @@ try {
                                             <th class="text-center">查看內容</th>
                                             <th class="text-center">編輯商品</th>
                                             <!-- <th>商品排序</th> -->
-                                            <th>商品名稱</th>
-                                            <th>貨號</th>
-                                            <th>大分類</th>
-                                            <th>小分類</th>
-                                            <th>商品圖片</th>
-                                            <th>顏色</th>
-                                            <th>尺寸</th>
-                                            <th>品項描述</th>
-                                            <th>定價</th>
-                                            <th>庫存數</th>
-                                            <th>編輯時間</th>
+                                            <th class="text-center">商品名稱</th>
+                                            <th class="text-center">貨號</th>
+                                            <th class="text-center">大分類</th>
+                                            <th class="text-center">小分類</th>
+                                            <th class="text-center">商品圖片</th>
+                                            <th class="text-center">顏色</th>
+                                            <th class="text-center">尺寸</th>
+                                            <th class="text-center">品項描述</th>
+                                            <th class="text-center">定價</th>
+                                            <th class="text-center">庫存數</th>
+                                            <th class="text-center">編輯時間</th>
                                             <!-- <th>上架</th> -->
-                                            <th>編輯商品</th>
+                                            <th class="text-center">編輯商品</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -237,28 +242,26 @@ try {
                                             </td>  <!--編輯按鈕結束-->
 
 
-                                            <!-- <td><?= $value["product_id"] ?></td> -->
-                                            <td><?= $value["product_name"] ?></td>
-                                            <td><?= $value["product_item"] ?></td>
-                                            <td><?= $value["big_cat"] ?></td>
-                                            <td><?= $value["small_cat"] ?></td>
+                                            <!-- <td class="text-center"><?= $value["product_id"] ?></td> -->
+                                            <td class="name-block text-center"><?= $value["product_name"] ?></td>
+                                            <td class="item-block text-center"><?= $value["product_item"] ?></td>
+                                            <td class="text-center"><?= $value["big_cat"] ?></td>
+                                            <td class="text-center"><?= $value["small_cat"] ?></td>
 
-                                            <td class="cover-fit">
+                                            <td class="cover-fit text-center">
 
                                                 <img src="./images/product/<?= $value["product_image"] ?>" alt="<?= $value["product_image"] ?>"  width=180px>
 
                                             </td>
 
-                                            <td><?= $value["color"] ?></td>
-                                            <td><?= $value["product_size"] ?></td>
+                                            <td class="text-center"><?= $value["color"] ?></td>
+                                            <td class="text-center"><?= $value["product_size"] ?></td>
 
                                             <td class="des">
-                                                <pre class="des text-align-left">
-                                                    <?= $value["product_describe"] ?>
-                                                </pre>
+                                                <pre class="des text-align-left"><?= $value["product_describe"] ?></pre>
                                             </td>
 
-                                            <td>
+                                            <td class="text-center">
 
                                                 <?php if($value["product_price"]>=1000): 
                                                         echo number_format($value["product_price"])."<br>";
@@ -269,11 +272,11 @@ try {
 
                                             </td>
 
-                                            <td><?= $value["product_stock"] ?></td>
-                                            <td><?= $value["product_create_time"] ?></td>
+                                            <td class="text-center"><?= $value["product_stock"] ?></td>
+                                            <td class="text-center"><?= $value["product_create_time"] ?></td>
                                             <!-- <td><?= $value["product_valid"] ?></td> -->
 
-                                            <td class="text-nowrap">  <!--編輯按鈕開始-->
+                                            <td class="text-nowrap text-center">  <!--編輯按鈕開始-->
                                     
                                                 <a role="button" href="product-edit.php?id=<?= $value["product_id"] ?>"
                                                 class="mb-2"><i class="fas fa-edit"></i></a> 
