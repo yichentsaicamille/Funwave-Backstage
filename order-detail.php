@@ -94,8 +94,8 @@ try {
                                     <img class="cover-fit" src="images/product/<?=$value["product_image"]?>" alt="product image">
                                 </div>
                             </td>
-                            <td class="text-end">$<?= $value["product_price"] ?></td>
-                            <td class="text-end"><?= $value["quantity"] ?></td>
+                            <td>$<?= $value["product_price"] ?></td>
+                            <td><?= $value["quantity"] ?></td>
                             <td class="text-end"><?php
                                 $subtotal = $value["quantity"] * $value["product_price"];
                                 echo "$" . $subtotal;
