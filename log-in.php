@@ -72,7 +72,7 @@ if (isset($_SESSION["member"])) {
                     </div>
                     <ul class="d-flex list-unstyled home-main">
                         <li><a class="logoutButton" href="./log-in.php">登入</a></li>
-                        <li><a class="logoutButton" href="./sign-up.php">註冊</a></li>
+                        <li><a class="logoutButton" href="./sign-up-member.php">註冊</a></li>
                     </ul>
                 </div>
             </div>
