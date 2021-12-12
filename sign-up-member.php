@@ -11,6 +11,9 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php require_once("./public/css.php") ?>
     <style>
+        .header {
+            background: #212529;
+        }
         .password-ipt {
             position: relative;
         }
@@ -28,7 +31,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
     <div class="container-fluid">
         <div class="row">
             <header class="header shadow-sm">
-                <div class="container-fluid d-flex justify-content-between align-items-center navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="d-flex justify-content-between align-items-center navbar navbar-expand-lg navbar-dark bg-dark">
                     <a href="shopping-list.php" class="navbar-brand">
                         <h3 class="px-5">
                             <i class="fas fa-shopping-basket"></i> Shopping Cart
