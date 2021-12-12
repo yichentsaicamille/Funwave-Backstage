@@ -19,7 +19,7 @@ if(isset($_POST["action"])&&($_POST["action"]=="update")){
     }
 
     //重新導向回到主畫面 不知道為什麼停在原頁面不能直接看到修改的樣子
-    header("Location: course-order-list.php");
+    header("Location: service.php");
 }else{
 
     $sql_select="SELECT course_order_id, course_order_datetime, schedule_id, coach_id, student_id FROM course_order_list WHERE course_order_id=?";
