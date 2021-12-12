@@ -191,7 +191,7 @@ try{
                                     <li class="page-item <?php if($p==$i) echo "active" ?>">
                                         <a class="page-link" href="course-schedule-list.php?p=<?=$i?>"><?=$i?></a></li>
                                 <?php endfor; ?>
-                                <li class="page-item"><a class="page-link" href="course-list.php?p=<?=$pageCount?>"> 最末頁</a></li>
+                                <li class="page-item"><a class="page-link" href="course-schedule-list.php?p=<?=$pageCount?>"> 最末頁</a></li>
                             </ul>
                         </nav>
                     <?php endif; ?>
