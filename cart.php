@@ -49,10 +49,10 @@ $products = $stmt->fetchAll();
 <body>
 <?php require_once("./public/cart_header.php") ?>
 <div class="container-fluid">
-    <div class="row px-5 mt-5">
+    <div class="row px-5 mt-4 mb-5">
         <div class="col-md-7">
-            <div class="pt-4">
-                <h6>My Cart</h6>
+            <div class="pt-0">
+                <h4>My Cart</h4>
                 <hr>
                 <form action="cart.php" method="get" class="cart-items">
                     <?php foreach ($products as $product): ?>
@@ -60,13 +60,13 @@ $products = $stmt->fetchAll();
                         <div class="border rounded cart-item" data-id="<?= $product['product_id'] ?>">
                             <div class="row bg-white">
                                 <div class="col-md-3 ps-0">
-                                    <!--                                    待圖片有了，再移除註解，不然每次跳錯誤-->
-                                    <!--                                    <img src="images/-->
-<!--                                     //= $product['product_image'] >" alt="image1" class="img-fluid">-->
+                                    <div class="ratio ratio-1x1 my-3">
+                                        <img class="cover-fit" src="images/product/<?= $product['product_image'] ?>" alt="product image">
+                                    </div>
                                 </div>
-                                <div class="col-md-5 pb-3 pt-2 " >
+                                <div class="col-md-5 pb-3 pt-3" >
                                     <h5 class="pt-2" ><?= $product['product_name'] ?></h5>
-                                    <small class="text-secondary">Seller: cartoon</small>
+                                    <small class="text-secondary">Seller: Funwave</small>
                                     <h5 class="pt-2 product_price"><?= $product['product_price'] ?></h5>
                                 </div>
                                 <div class="col-md-4 py-5">
@@ -99,14 +99,14 @@ $products = $stmt->fetchAll();
                             <?php
                             if (isset($_SESSION['cart'])) {
                                 $count = count($_SESSION['cart']);
-                                echo "<h6>Price ($count items)</h6>";
+                                echo "<h6>商品金額 ($count items)</h6>";
                             } else {
-                                echo "<h6>Price (0 items)</h6>";
+                                echo "<h6>商品金額 (0 items)</h6>";
                             }
                             ?>
                             <h6>運費</h6>
                             <hr>
-                            <h6>account payable</h6>
+                            <h6>總金額</h6>
                         </div>
                         <div class="col-md-6">
                             <h6 class="total">$ <?php echo ""; ?></h6>
