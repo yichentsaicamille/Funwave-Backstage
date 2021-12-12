@@ -185,7 +185,7 @@ try{
                     <?php if(isset($p)): ?>
                         <nav aria-label="Page navigation example ">
                             <ul class="pagination justify-content-center">
-                                <li class="page-item"><a class="page-link" href="course-list.php?p=1">第一頁</a></li>
+                                <li class="page-item"><a class="page-link" href="course-schedule-list.php?p=1">第一頁</a></li>
                                 <?php for($i=1;$i<=$pageCount; $i++) :?>
                                     <!--當下頁數跟頁碼相同時echo active 寫在li class裡面-->
                                     <li class="page-item <?php if($p==$i) echo "active" ?>">
