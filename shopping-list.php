@@ -16,8 +16,8 @@ if(isset($_POST['add_cart'])){
         $item_array_id=array_column($_SESSION['cart'],"product_id");
 //      如果點選的$_POST['product_id']有存在$item_array_id之中
         if (in_array($_POST['product_id'], $item_array_id)){
-            echo "<script>alert('Product is already added in the cart!')</script>";
-            echo "<script>window.location='product-list.php'</script>";
+            echo "<script>alert('商品已加入購物車!')</script>";
+            echo "<script>window.location='shopping-list.php'</script>";
         }else{
             $count = count($_SESSION['cart']);
             $item_array=array(
