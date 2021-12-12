@@ -167,13 +167,6 @@ try{
             $('div[id^="delivery"]').hide();
             $(deliveryValue).show();
         });
-
-        window.onload=function(){
-            var obt=document.getElementById("bt");
-            obt.onclick=function(){
-                alert("訂單修改已完成!");
-            }
-        }
     </script>
 </body>
 </html>
