@@ -1,7 +1,7 @@
 <?php
 require_once("./method/pdo-connect.php");
 require_once("./public/admin-if-login.php");
-$sql = "select * from coach inner join genre on genre.genre_id = coach.genre_id";
+$sql = "select * from coach inner join genre on genre.genre_id = coach.genre_id ORDER BY coach_created_at ASC, coach_name DESC";
 $stmt = $db_host->prepare($sql);
 
 try {
@@ -17,7 +17,7 @@ try {
 //如果有搜尋
 if (isset($_GET["search"]) && ($_GET["search"] != "")) {
     $search = $_GET["search"];
-    $sql = "select * from coach inner join genre on genre.genre_id = coach.genre_id WHERE coach_name LIKE '%$search%'";
+    $sql = "select * from coach inner join genre on genre.genre_id = coach.genre_id WHERE coach_name LIKE '%$search%' ORDER BY coach_created_at ASC, coach_name DESC";
     //  $sql = "SELECT * FROM coach WHERE coach_name LIKE '%$search%'";
     //準備好語句for搜尋框
     $result_query = $db_host->prepare($sql);
@@ -53,7 +53,7 @@ if (isset($_GET["search"]) && ($_GET["search"] != "")) {
     }
 
 //    有限制筆數的語句
-    $sql = "select * from coach inner join genre on genre.genre_id = coach.genre_id LIMIT $startItem, $pageItems";
+    $sql = "select * from coach inner join genre on genre.genre_id = coach.genre_id ORDER BY coach_created_at DESC, coach_name ASC LIMIT $startItem, $pageItems";
 //    準備好語句
     $result_query = $db_host->prepare($sql);
 
