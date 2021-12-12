@@ -31,7 +31,7 @@ try{
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Cart checkout</title>
+    <title>doCreditCardSuccess</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -57,7 +57,7 @@ try{
 <body>
 <div class="container-fluid">
     <div class="row wrap d-flex justify-content-center align-items-center">
-    <?php require_once("../public/cart_header.php") ?>
+        <?php require_once("../public/cart_header.php") ?>
         </aside>
         <article class="article col-lg-7 shadow-sm d-flex justify-content-center align-items-center p-5 mt">
             <div class="">
