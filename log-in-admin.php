@@ -46,7 +46,7 @@ if (isset($_SESSION["admin"])) {
                 </aside> -->
                 <div class="sign-up-content col-lg-4 shadow-sm p-5">
                     <form id="form" action="./method/doLoginAdmin.php" method="post">
-                        <h1 class="text-center">會員登入</h1>
+                        <h1 class="text-center">登入</h1>
                         <div class="mb-3">
                             <label for="account">帳號</label>
                             <input id="account" type="text" name="admin_account" class="form-control" placeholder="請輸入 3~12 個字元的帳號">
