@@ -93,6 +93,11 @@ try {
             width: 200px;
             min-width: 120px;
         }
+        .photo-list {
+            max-width: 80px;
+            min-width: 75px;
+            height: auto;
+        }
     </style>
 </head>
 
@@ -106,8 +111,9 @@ try {
         </aside>
         <!--/menu-->
         <div class="col-lg-9 d-flex justify-content-between align-items-center button-group shadow-sm">
-            <div>
-                <a role="button" href="coach-create.php" class="btn btn-primary text-nowrap">新增</a>
+            <div class="d-flex">
+                <a role="button" class="btn btn-primary me-2" href="coach.php"><i class="fas fa-home"></i> 回起始列表</a>
+                <a role="button" href="coach-create.php" class="btn btn-primary text-nowrap"><i class="fas fa-plus"></i> 新增教練</a>
             </div>
             <div class="d-flex justify-content-between align-items-center">
                 <!-- <label for="" class="me-2">搜尋</label> -->
@@ -182,11 +188,13 @@ try {
                     <?php if (isset($p)): ?>
                         <nav aria-label="Page navigation example ">
                             <ul class="pagination justify-content-center">
+                            <li class="page-item"><a class="page-link" href="coach.php?p=1">第一頁</a></li>
                                 <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
                                     <!--當下頁數跟頁碼相同時echo active 寫在li class裡面-->
                                     <li class="page-item <?php if ($p == $i) echo "active" ?>">
                                         <a class="page-link" href="coach.php?p=<?= $i ?>"><?= $i ?></a></li>
-                                <?php endfor; ?>
+                                        <?php endfor; ?>
+                                        <li class="page-item"><a class="page-link" href="coach.php?p=<?= $pageCount ?>">最末頁</a></li>
                             </ul>
                         </nav>
                     <?php endif; ?>

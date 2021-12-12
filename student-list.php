@@ -101,7 +101,7 @@ try{
             <form class="d-flex justify-content-between align-items-center" action="" method="get">
                 <div class="my-3">
                     <!-- <a role="button" href="service.php" class="btn btn-primary">返回</a> -->
-                    <a role="button" href="addStudent.php" class="btn btn-primary">新增學員</a>
+                    <a role="button" href="addStudent.php" class="btn btn-primary"><i class="fas fa-plus"></i> 新增學員</a>
                 </div>
                 <div class="d-flex">
                     <input class="form-control me-2" type="search" name="s" placeholder="請輸入學生姓名" value="<?php if (isset($search)) echo $search; ?>">

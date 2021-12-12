@@ -102,7 +102,7 @@ try{
         <div class="col-9 button-group shadow-sm">
             <form class=" d-flex justify-content-between align-items-center" method="get">
                 <div class="my-3">
-                    <a role="button" href="addCourseOrder.php" class="btn btn-primary">新增課程訂單</a>
+                    <a role="button" href="addCourseOrder.php" class="btn btn-primary"><i class="fas fa-plus"></i> 新增課程訂單</a>
                 </div>
                 <div class="d-flex">
                     <input class="form-control me-2" type="search" name="s" placeholder="請輸入訂單日期" value="<?php if (isset($search)) echo $search; ?>">

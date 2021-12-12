@@ -3,8 +3,20 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
 ?>
 <nav class="navbar">
     <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="" href="#">商品管理</a>
+    <li class="nav-item">
+            <a class="<?php
+            if (($activePage === 'product-list')) {
+                echo "active";
+            }else if(($activePage === 'product-create')) {
+                echo "active";
+            }else if(($activePage === 'product-edit')) {
+                echo "active";
+            }else if(($activePage === 'product-detail')) {
+                echo "active";
+            }else {
+                echo "";
+            }
+            ?>" href="./product-list.php">商品管理</a>
         </li>
         <li class="nav-item">
             <a class="<?php
@@ -96,7 +108,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
             }else {
                 echo "";
             }
-            ?>" href="./info-list.php">資訊/消息管理</a>
+            ?>" href="./info-list.php">資訊管理</a>
         </li>
         <li class="nav-item">
             <a class="<?php

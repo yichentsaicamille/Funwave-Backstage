@@ -1,34 +1,15 @@
 <?php
 require_once("./method/pdo-connect.php");
+require_once("./public/if-login.php");
 //product-list.php已設好session
 $productId = array_column($_SESSION['cart'], "product_id");
-//implode()把陣列元素組合為一個字串。 . .代表含義????
+//implode()把陣列元素組合為一個字串。
 //var_dump($productId);
-echo '<br>';
 $sql = "SELECT * FROM products where product_id in (" . implode(',', $productId) . " ) AND product_valid = 1 ORDER BY product_id DESC";
 $stmt = $db_host->prepare($sql);
 $stmt->execute();
 $products = $stmt->fetchAll();
 //var_dump($products);
-
-//怎麼確定沒有就是沒登入？？？？？？？？
-if (!count($products)) {
-    echo "請登入";
-    exit;
-}
-
-//做不出remove!!!!
-//if (isset($_GET['remove'])){
-//    if ($_GET['action']=='remove'){
-//        foreach ($_SESSION['cart'] as $key => $value){
-//            if($value['product_id']==$_GET['id']){
-//                unset($_SESSION['cart'][$key]);
-//                echo "<script>alert('Product has been removed!')</script>";
-//                echo "<script>window.location='cart.php'</script>";
-//            }
-//        }
-//    }
-//}
 ?>
 
 <!doctype html>
@@ -52,15 +33,15 @@ if (!count($products)) {
             color: white;
             text-decoration: none;
         }
-        #cart_count {
+        .cart_count {
             text-align: center;
             padding: 0 0.9rem 0.1rem 0.9rem;
             border-radius: 3rem;
         }
-        .price-details h6{
+        .price-details h6 {
             padding: 3% 2%;
         }
-        .quantity{
+        .quantity {
             width: 70px;
         }
     </style>
@@ -68,71 +49,80 @@ if (!count($products)) {
 <body>
 <?php require_once("./public/cart_header.php") ?>
 <div class="container-fluid">
-    <div class="row px-5">
+    <div class="row px-5 mt-5">
         <div class="col-md-7">
             <div class="pt-4">
                 <h6>My Cart</h6>
                 <hr>
-                <?php foreach ($products as $product): ?>
-                    <form action="cart.php" method="get" class="cart-items">
-                        <div class="border rounded">
+                <form action="cart.php" method="get" class="cart-items">
+                    <?php foreach ($products as $product): ?>
+
+                        <div class="border rounded cart-item" data-id="<?= $product['product_id'] ?>">
                             <div class="row bg-white">
                                 <div class="col-md-3 ps-0">
-                                    <img src="images/<?= $product['product_image'] ?>" alt="image1" class="img-fluid">
+                                    <!--                                    待圖片有了，再移除註解，不然每次跳錯誤-->
+                                    <!--                                    <img src="images/-->
+<!--                                     //= $product['product_image'] >" alt="image1" class="img-fluid">-->
                                 </div>
-                                <div class="col-md-5 pb-3 pt-2">
-                                    <h5 class="pt-2"><?= $product['product_name'] ?></h5>
+                                <div class="col-md-5 pb-3 pt-2 " >
+                                    <h5 class="pt-2" ><?= $product['product_name'] ?></h5>
                                     <small class="text-secondary">Seller: cartoon</small>
                                     <h5 class="pt-2 product_price"><?= $product['product_price'] ?></h5>
-                                    <button type="submit" class="btn btn-warning">Save for later</button>
-                                    <button type="submit" class="btn btn-danger mx-2" name="remove" id="remove">Remove</button>
                                 </div>
                                 <div class="col-md-4 py-5">
                                     <div>
-                                        <button type="button" class="btn bg-light border rounded-circle minus"><i class="fas fa-minus"></i></button>
-                                        <input type="text" value="1" class="form-control d-inline quantity" name="quantity">
-                                        <button type="button" class="btn bg-light border rounded-circle plus"><i class="fas fa-plus"></i></button>
+                                        <button type="button" class="btn bg-light border rounded-circle minus"><i
+                                                    class="fas fa-minus"></i></button>
+                                        <input type="text" value="1" class="form-control d-inline quantity"
+                                               name="quantity">
+                                        <button type="button" class="btn bg-light border rounded-circle plus"><i
+                                                    class="fas fa-plus"></i></button>
                                         <div id="subtotal" class=""></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                <?php endforeach; ?>
+
+                    <?php endforeach; ?>
+                </form>
             </div>
         </div>
-        <div class="col-md-4 offset-md-1  mt-5 ">
-            <div class="p-4 border rounded bg-white h-25">
-                <h6>價錢明細</h6>
-                <hr>
-                <div class="row price-details">
-                    <div class="col-md-6">
-                        <?php
-                        if (isset($_SESSION['cart'])){
-                            $count=count($_SESSION['cart']);
-                            echo "<h6>Price ($count items)</h6>";
-                        }else{
-                            echo "<h6>Price (0 items)</h6>";
-                        }
-                        ?>
-                        <h6>運費</h6>
-                        <hr>
-                        <h6>account payable</h6>
-                    </div>
-                    <div class="col-md-6">
-                        <h6 class="total">$ <?php echo ""; ?></h6>
-                        <h6 class="text-success"> 免運費FREE</h6>
-                        <hr>
-                        <h6 class="total">
-                            $ <?php echo ""; ?>
-                        </h6>
+        <div class="col-md-4 offset-md-1 mt-5">
+            <form action="cart_checkout.php" method="post">
+                <div class="p-4 border rounded bg-white h-25">
+
+                    <h6>價錢明細</h6>
+                    <hr>
+                    <input id="cart" type="hidden" name="cart">
+                    <div class="row price-details">
+                        <div class="col-md-6">
+                            <?php
+                            if (isset($_SESSION['cart'])) {
+                                $count = count($_SESSION['cart']);
+                                echo "<h6>Price ($count items)</h6>";
+                            } else {
+                                echo "<h6>Price (0 items)</h6>";
+                            }
+                            ?>
+                            <h6>運費</h6>
+                            <hr>
+                            <h6>account payable</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="total">$ <?php echo ""; ?></h6>
+                            <h6 class="text-success"> 免運費FREE</h6>
+                            <hr>
+                            <h6 class="total">
+                                $ <?php echo ""; ?>
+                            </h6>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="d-flex justify-content-evenly mt-5">
-                <a role="button" class="btn btn-secondary" href="product-list.php">繼續購物</a>
-                <a role="button" class="btn btn-primary" href="cart_checkout.php">下一步</a>
-            </div>
+                <div class="d-flex justify-content-evenly mt-5">
+                    <a role="button" class="btn btn-secondary" href="shopping-list.php">繼續購物</a>
+                    <button type="submit" class="btn btn-primary" >下一步</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -152,41 +142,52 @@ if (!count($products)) {
         crossorigin="anonymous"></script>
 
 
-<script type="text/javascript">
+<script>
     // 購物車數量增減
     $(".plus").click(function () {
         let n = $(this).siblings(".quantity").val();
         n++;
         $(this).siblings(".quantity").val(n);
     })
-    $(".minus").click(function(){
-        let n=$(this).siblings(".quantity").val();
+    $(".minus").click(function () {
+        let n = $(this).siblings(".quantity").val();
         //當文字框的值減到1時就不再執行n--及後面的程式碼
-        if(n==1){
+        if (n == 0) {
             return false;
         }
         n--;
         $(this).siblings(".quantity").val(n);
     })
     // 取得數量、計算小計
-    $(".minus, .plus, .quantity").on("click change keypress keyup blur",function(){
+    $(".minus, .plus, .quantity").on("click change keypress keyup blur", function () {
         $(this).val($(this).val().replace(/[^\d].+/, ""));
         if ((event.which < 48 || event.which > 57)) {
             event.preventDefault();
         }
 
-        var total=0;
-        var product_amount= $(this).val();
-        if(product_amount<0)$(this).val(0);
+        var total = 0;
+        var product_quantity = $(this).val();
+        if (product_quantity < 0) $(this).val(0);
 
-        $("form").each(function(){
-            var product_price=$(this).find(".product_price").text();
-            var quantity= $(this).find(".quantity").val();
-            var subtotal= product_price*quantity;
+        $(".cart-item").each(function () {
+            var product_price = $(this).find(".product_price").text();
+            var quantity = $(this).find(".quantity").val();
+            var subtotal = product_price * quantity;
             $(this).find(".s_price").text(subtotal);
-            total+= subtotal;
+            total += subtotal;
         });
         $(".total").text(total);
+
+        let cart=[];
+        $(".cart-item").each(function(){
+            let item={
+                product_id: $(this).data("id"),
+                quantity: Number($(this).find(".quantity").val())
+            }
+            cart.push(item)
+        })
+        // console.log(cart)
+        $("#cart").val(JSON.stringify(cart));
     });
 </script>
 

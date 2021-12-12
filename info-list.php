@@ -97,8 +97,8 @@ if (isset($_GET["find"])) {
 
         <div class=" col-lg-9 button-group shadow-sm d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
-                <a href="info-list.php?p=1" class="btn btn-primary text-nowrap me-2">資料列表</a>
-                <a href="info-create.php" class="btn btn-primary text-nowrap">新增</a>
+                <a href="info-list.php?p=1" class="btn btn-primary text-nowrap me-2"><i class="fas fa-stream"></i> 資料列表</a>
+                <a href="info-create.php" class="btn btn-primary text-nowrap"><i class="fas fa-plus"></i> 新增資訊</a>
             </div>
             <div class="d-flex align-items-center">
                 <form action="info-list.php" method="get" class="d-flex justify-content-end align-items-center">

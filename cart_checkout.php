@@ -1,4 +1,21 @@
-<!--Bug: 訂單送出 信用卡卻沒有跳轉到信用卡頁面！！！-->
+<!--address無法加required，因為如果只選超商會過不了。 可能要用js感應觸發再傳送給html required!!!!!!!!!!!!!!!!-->
+
+<?php
+//把所選數量放進session
+require_once("./method/pdo-connect.php");
+require_once("./public/if-login.php");
+
+$cart=$_POST["cart"];
+//json_decode()從JSON中提取資料。$assoc，TRUE，函式將返回一個關聯陣列，FALSE，函式將返回物件。
+$cart=json_decode($cart,true);
+//var_dump($cart);
+//echo '<br>';
+
+//直接將$_SESSION['cart']的內容替換陣列$cart
+$_SESSION['cart']=$cart;
+//var_dump($_SESSION['cart']);
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,34 +25,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php require_once("./public/css.php") ?>
     <style>
-
+        /* .container-fluid {
+            padding-left: 0px;
+        } */
+        .header {
+            background: #212529;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+        .article {
+            background: #fff;
+            margin: 15px auto;
+            padding: 0px 10px;
+        }
+        .content-group {
+            margin-top: 120px;
+        }
     </style>
 
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row wrap d-flex">
-        <?php require_once("./public/header.php") ?>
+    <div class="row d-flex d-flex justify-content-center">
+        <?php require_once("./public/cart_header.php") ?>
         <!--menu-->
-        <aside class="col-lg-2 navbar-side shadow-sm">
+        <!-- <aside class="col-lg-2 navbar-side shadow-sm">
             <?php require_once("./public/nav.php") ?>
-        </aside>
+        </aside> -->
         <!--/menu-->
-        <article class="article col-lg-9 shadow-sm table-responsive content-group">
+        <article class="article col-lg-10 shadow-sm table-responsive content-group">
             <div class="table-wrap">
                 <form action="./method/doInsertOrder.php" method="post" class="m-3">
                     <div class="row d-flex justify-content-center">
-                        <!--會員編號隱藏-->
-                        <input id="" type="hidden" name="member_id" class="form-control" value="" readonly>
-                        <div class="col-md-10 mb-4">
-                            <label class="mb-2" for="">會員姓名</label>
-                            <input id="" type="text" name="member_id" class="form-control" value="" readonly>
-                        </div>
-                        <div class="col-md-4 mb-4">
+                        <!--小專未做會員登入(前台)，故先不連接登入的會員資料-->
+<!--                        <input id="" type="hidden" name="member_id" class="form-control" value="" readonly>-->
+<!--                        <div class="col-md-10 mb-4">-->
+<!--                            <label class="mb-2" for="">會員姓名</label>-->
+<!--                            <input id="" type="text" name="member_id" class="form-control" value="" readonly>-->
+<!--                        </div>-->
+                        <div class="col-md-4 mb-4 mt-4">
                             <label class="mb-2" for="receiver">收件人姓名</label>
                             <input id="receiver" type="text" name="receiver" class="form-control" value="" required>
                         </div>
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-6 mb-4 mt-4">
                             <label class="mb-2" for="receiver_phone">收件人電話</label>
                             <input id="receiver_phone" type="number" name="receiver_phone" class="form-control" value="" required>
                         </div>
@@ -47,9 +79,10 @@
                                 <option value="#delivery2">超商取貨</option>
                             </select>
                         </div>
+<!--                        address無法加required，因為這樣選超商，這邊會過不了。 可能要用js感應觸發再傳送給html required!!!!!!!!!!!!!!!!-->
                         <div class="col-md-6 mb-4" id="delivery1">
                             <label class="mb-2" for="address">收件人地址</label>
-                            <input id="address" type="text" name="address" class="form-control" value="" required>
+                            <input id="address" type="text" name="address" class="form-control" value="">
                         </div>
                         <div class="col-md-6 mb-4" id="delivery2">
                             <div class="mb-2">超商門市</div>
@@ -62,19 +95,18 @@
                                 <option value="東大門市">東大門市</option>
                             </select>
                         </div>
-                        <div class="col-md-10 mb-4">
+                        <div class="col-md-10 mb-5">
                             <div class="mb-2">付款方式</div>
                             <select class="form-select" aria-label="payment select" name="payment">
                                 <option value="信用卡">信用卡</option>
                                 <option value="貨到付款">貨到付款</option>
                             </select>
                         </div>
-                        <div class="col-md-10 d-flex justify-content-center">
+                        <div class="col-md-10 d-flex justify-content-evenly mb-4">
+                            <a role="button" class="btn btn-secondary" href="cart.php">上一步</a>
                             <button id="bt" class="btn btn-primary" type="submit">送出訂單</button>
                         </div>
                     </div>
-
-
                 </form>
             </div>
         </article>
@@ -100,16 +132,6 @@
         $(deliveryValue).show();
     });
 
-    // 排除商店送不出的bug後，要來確認調整此
-    <?php if (isset($_POST["receiver"]) && isset($_POST["receiver_phone"]) && isset($_POST["address"])) : ?>
-    window.onload=function(){
-        var obt=document.getElementById("bt");
-        obt.onclick=function(){
-            alert("訂單已送出!");
-        }
-    }
-    <?php else:?>
-    <?php endif; ?>
 </script>
 </body>
 </html>
