@@ -48,11 +48,7 @@ $_SESSION['cart']=$cart;
 <div class="container-fluid">
     <div class="row d-flex d-flex justify-content-center">
         <?php require_once("./public/cart_header.php") ?>
-        <!--menu-->
-        <!-- <aside class="col-lg-2 navbar-side shadow-sm">
-            <?php require_once("./public/nav.php") ?>
-        </aside> -->
-        <!--/menu-->
+
         <article class="article col-lg-10 shadow-sm table-responsive content-group">
             <div class="table-wrap">
                 <form action="./method/doInsertOrder.php" method="post" class="m-3">
