@@ -133,7 +133,7 @@ echo $now."<br>------------------------------------------<br>";
 //處理前台會遇到選單預設不帶入原圖片值(ex:longboard001.jpg)，而傳送到資料庫以空值取代原圖片值的問題的問題<STEP2>
 if(!empty($_POST["product_image"])){         
     //撈資料存在$sql
-    $sql="UPDATE products SET product_name='$product_name', product_item='$product_item', big_cat_id='$big_cat_id', small_cat_id='$small_cat_id', product_image='$product_image',color_id='$color_id', product_size='$product_size', product_describe='$product_describe', product_price='$product_price', product_stock='$product_stock', product_create_time=`$now` WHERE product_id='$product_id'";   //WHERE id='$id' 看你要修改的是哪一筆資料
+    $sql="UPDATE products SET product_name='$product_name', product_item='$product_item', big_cat_id='$big_cat_id', small_cat_id='$small_cat_id', product_image='$product_image',color_id='$color_id', product_size='$product_size', product_describe='$product_describe', product_price='$product_price', product_stock='$product_stock', product_create_time='$now' WHERE product_id='$product_id'";   //WHERE id='$id' 看你要修改的是哪一筆資料
 }
 else{
     $sql="UPDATE products SET product_name='$product_name', product_item='$product_item', big_cat_id='$big_cat_id', small_cat_id='$small_cat_id', color_id='$color_id', product_size='$product_size', product_describe='$product_describe', product_price='$product_price', product_stock='$product_stock', product_create_time='$now' WHERE product_id='$product_id'";   //WHERE id='$id' 看你要修改的是哪一筆資料
