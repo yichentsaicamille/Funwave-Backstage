@@ -34,7 +34,7 @@ body {
 .header-wrapper{
     background: var(--quarry-color);
     padding: none;
-    color: #F8F6E9;
+    color: rgb(110, 110, 110);
 }
 .logo {
     width: 70px;

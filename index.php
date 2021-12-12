@@ -41,7 +41,7 @@ require_once("./public/admin-if-login.php");
             background: #f3f3f3;
             height: 100px;
             margin: 20px;
-            opacity: .6;
+            opacity: .8;
         }
 
         .content-list li a {
@@ -53,6 +53,8 @@ require_once("./public/admin-if-login.php");
             display: block;
             transition: .5s;
             color: var(--quarry-color);
+            font-weight: bold;
+            border: 1px solid var(--quarry-color);
         }
         .content-list li a:hover {
             color: var(--aruba-blue-color);
@@ -74,12 +76,12 @@ require_once("./public/admin-if-login.php");
                 <img class="cover-fit home-page" src="./images/home-page-update2.png" alt="">
                 <img class="man" src="./images/home-page-man.png" alt="">
                 <ul class="row content-list d-flex justify-content-center list-unstyled">
-                    <li class="col-md-4 shadow-sm"><a href="product-list.php"><i class="fas fa-store"></i>&ensp;商品管理</a></li>
-                    <li class="col-md-4 shadow-sm"><a href="service.php"><i class="fas fa-dove"></i>&ensp;服務管理</a></li>
-                    <li class="col-md-4 shadow-sm"><a href="order-list.php"><i class="fas fa-list-alt"></i>&ensp;訂單管理</a></li>
-                    <li class="col-md-4 shadow-sm"><a href="coach.php"><i class="fas fa-chalkboard-teacher"></i>&ensp;教練管理</a></li>
-                    <li class="col-md-4 shadow-sm"><a href="info-list.php"><i class="fas fa-file-alt"></i>&ensp;資訊管理</a></li>
-                    <li class="col-md-4 shadow-sm"><a href="member-list.php"><i class="fas fa-users"></i>&ensp;會員管理</a></li>
+                    <li class="col-md-4 shadow"><a href="product-list.php"><i class="fas fa-store"></i>&ensp;商品管理</a></li>
+                    <li class="col-md-4 shadow"><a href="service.php"><i class="fas fa-dove"></i>&ensp;服務管理</a></li>
+                    <li class="col-md-4 shadow"><a href="order-list.php"><i class="fas fa-list-alt"></i>&ensp;訂單管理</a></li>
+                    <li class="col-md-4 shadow"><a href="coach.php"><i class="fas fa-chalkboard-teacher"></i>&ensp;教練管理</a></li>
+                    <li class="col-md-4 shadow"><a href="info-list.php"><i class="fas fa-file-alt"></i>&ensp;資訊管理</a></li>
+                    <li class="col-md-4 shadow"><a href="member-list.php"><i class="fas fa-users"></i>&ensp;會員管理</a></li>
                 </ul>
             </div>
             <article class="col d-flex justify-content-center align-items-center">
