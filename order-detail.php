@@ -1,4 +1,3 @@
-<!--是否需要在資料表order-detail添加會員編號欄位。圖片路徑待添加-->
 <?php
 require_once("./method/pdo-connect.php");
 require_once("./public/admin-if-login.php");
@@ -39,6 +38,18 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php require_once("./public/css.php") ?>
 
+    <style>
+        th{
+            max-width: 40px;
+        }
+        th3{
+            max-width: 60px;
+        }
+        td{
+            max-width: 60px;
+            word-wrap: break-word;
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
@@ -54,17 +65,16 @@ try {
                 <a role="button" href="order-list.php" class="btn btn-primary">返回</a>
             </div>
         </div>
-        <article class="article col-lg-9 shadow-sm table-responsive">
+        <article class="article col-lg-9 shadow-sm table-responsive px-3">
             <!--content-->
             <div class="table-wrap">
-                <table class="table table-bordered table-sm my-3 text-center">
+                <table class="table table-bordered table-sm text-center">
                     <thead>
                     <tr>
                         <th>訂單編號</th>
-                        <!--<th>會員編號</th>-->
                         <th>產品編號</th>
-                        <th>產品名稱</th>
-                        <th>產品圖片</th>
+                        <th class="th3">產品名稱</th>
+                        <th class="th3">產品圖片</th>
                         <th>單價</th>
                         <th>數量</th>
                         <th>小計</th>
@@ -76,10 +86,13 @@ try {
                         ?>
                         <tr>
                             <td><?= $order_id ?></td>
-<!--                            <td>--><?// $member_id?><!--</td>-->
                             <td><?= $value["product_id"] ?></td>
                             <td><?= $value["product_name"] ?></td>
-                            <td><?= $value["product_image"] ?></td>
+                            <td>
+                                <div class="ratio ratio-1x1">
+                                    <img class="cover-fit" src="images/product/<?=$value["product_image"]?>" alt="product image">
+                                </div>
+                            </td>
                             <td class="text-end">$<?= $value["product_price"] ?></td>
                             <td class="text-end"><?= $value["quantity"] ?></td>
                             <td class="text-end"><?php
