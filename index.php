@@ -24,6 +24,7 @@ require_once("./public/admin-if-login.php");
             </aside>
             <div class="container-fluid">
                 <img class="cover-fit home-page" src="./images/home-page-update2.png" alt="">
+                <img class="man" src="./images/home-page-man.png" alt="">
             </div>
 
         </div>

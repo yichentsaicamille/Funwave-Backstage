@@ -173,3 +173,9 @@ tbody tr td {
     margin-left: 12px;
     height: 100vh;
 }
+.man{
+    position: absolute;
+    bottom: 0px;
+    left: 45%;
+    height: 40vh;
+}
