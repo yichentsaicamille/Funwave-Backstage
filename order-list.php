@@ -292,11 +292,11 @@ if (isset($_GET["order_id"])){
         <!--/menu-->
         <div class="col-lg-9 shadow-sm button-group py-2 ps-4 pe-3">
             <div class="d-flex justify-content-between">
-                <div class="pt-3">
+                <div class="pt-2">
                     <a role="button" class="btn btn-primary" href="order-list.php"><i class="fas fa-home"></i> 回起始列表</a>
                 </div>
                 <form action="order-list.php" method="get">
-                    <div class="d-flex justify-content-end align-items-center pt-3">
+                    <div class="d-flex justify-content-end align-items-center pt-2">
                         <div class="d-flex align-items-center">
                             <label for="order_id" class="d-block me-0">訂單編號</label>
                             <div class="me-2"></div>
@@ -308,7 +308,7 @@ if (isset($_GET["order_id"])){
                 </form>
             </div>
             <form action="order-list.php" method="get">
-                    <div class="d-flex justify-content-end align-items-center pt-3">
+                    <div class="d-flex justify-content-end align-items-center pt-2">
                         <div class="d-flex align-items-center">
                             <label for="status" class="d-block me-2">訂單狀態</label>
                             <div class="me-2">
@@ -324,7 +324,7 @@ if (isset($_GET["order_id"])){
             </form>
 
             <form action="order-list.php" method="get">
-                    <div class="my-3 d-flex justify-content-end align-items-center">
+                    <div class="my-2 d-flex justify-content-end align-items-center">
                             <div class="d-flex align-items-center">
 <!--                                <input type="hidden" name="order_id" value="--><?//= $order_id ?><!--">-->
                                 <input type="hidden" name="status" value="<?= $status ?>">
