@@ -22,7 +22,7 @@ $stmtOrderList=$db_host->prepare($sqlOrderList);
 try{
     $stmtOrderList->execute();
     $orderCount=$stmtOrderList->rowCount();
-    echo "修改資料完成";
+//    echo "修改資料完成";
 }catch (PDOException $e){
     echo "修改資料錯誤: ".$e->getMessage();
 }
