@@ -191,7 +191,7 @@ try {
                     
                         <div class="col-10 d-flex justify-content-end">
                             <div class="form-inline">
-                                <button type="reset" class="mybutton btn btn-primary">重新填入</button>
+                                <button type="reset" class="mybutton btn btn-primary mr-3">重新填入</button>
 
                                 <button type="submit" class="mybutton btn btn-primary" onclick="javascript:return update();">儲存更新商品資料</button>
 
