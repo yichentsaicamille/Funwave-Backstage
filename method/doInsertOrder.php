@@ -12,7 +12,7 @@ $products = $stmt->fetchAll();
 
 
 //新增資料進order_list
-$member_id='888'; //還沒做會員用假資料(admin->888)
+$member_id='12'; //還沒做會員用假資料
 $amount='0'; //待order-detail建完會再改order_list的amount
 $payment=$_POST["payment"];
 $payment_status='未付款'; //待調整
