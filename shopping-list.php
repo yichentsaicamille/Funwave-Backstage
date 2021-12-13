@@ -59,10 +59,11 @@ if(isset($_POST['add_cart'])){
             color: white;
             text-decoration: none;
         }
-        td{
+        pre{
+            white-space: pre-wrap;
             word-wrap: break-word;
-            word-break: break-all;
-            overflow-y:auto;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1rem;
         }
         .product_img{
             min-width: 140px;
@@ -103,7 +104,7 @@ if(isset($_POST['add_cart'])){
                             <img class="cover-fit product_img" src="images/product/<?=$value["product_image"]?>" alt="product image">
                         </div>
                     </td>
-                    <td class="product_name"><?=$value["product_name"]?></td>
+                    <td class="product_name"><pre><?=$value["product_name"]?></pre></td>
                     <td class="product_price">$ <?=$value["product_price"]?></td>
                 </tr>
             <?php endforeach; ?>
