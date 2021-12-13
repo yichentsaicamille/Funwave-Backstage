@@ -56,7 +56,7 @@ if (isset($_SESSION["member"])) {
                 </a>
                 <div class="d-flex align-items-center">
                     <div>
-                        <a href="cart.php" class="nav-item active">
+                        <a href="cart.php" class="nav-item active text-decoration-none text-white">
                             <h5 class="px-5 cart">
                                 <i class="fas fa-shopping-cart"></i>Cart
                                 <?php
