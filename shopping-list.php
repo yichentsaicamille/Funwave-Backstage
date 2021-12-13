@@ -59,8 +59,19 @@ if(isset($_POST['add_cart'])){
             color: white;
             text-decoration: none;
         }
-        tr{
+        td{
             word-wrap: break-word;
+            word-break: break-all;
+            overflow-y:auto;
+        }
+        .product_img{
+            min-width: 140px;
+        }
+        .product_price{
+            min-width: 155px;
+        }
+        .product_name{
+            max-width: 235px;
         }
     </style>
 </head>
@@ -87,13 +98,13 @@ if(isset($_POST['add_cart'])){
                         </form>
                     </td>
                     <td><?=$value["product_id"]?></td>
-                    <td class="w-50">
+                    <td class="product_img">
                         <div class="ratio ratio-1x1 my-2">
-                            <img class="cover-fit" src="images/product/<?=$value["product_image"]?>" alt="product image">
+                            <img class="cover-fit product_img" src="images/product/<?=$value["product_image"]?>" alt="product image">
                         </div>
                     </td>
-                    <td><?=$value["product_name"]?></td>
-                    <td class="w-25">$ <?=$value["product_price"]?></td>
+                    <td class="product_name"><?=$value["product_name"]?></td>
+                    <td class="product_price">$ <?=$value["product_price"]?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
