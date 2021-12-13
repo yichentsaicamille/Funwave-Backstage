@@ -110,14 +110,14 @@ try {
         }
 
         /* Hide default HTML checkbox */
-        .switch input {
+        /* .switch input {
             opacity: 0;
             width: 0;
             height: 0;
-        }
+        } */
 
         /* The slider */
-        .slider {
+        /* .slider {
             position: absolute;
             cursor: pointer;
             top: 0;
@@ -153,16 +153,16 @@ try {
             -webkit-transform: translateX(26px);
             -ms-transform: translateX(26px);
             transform: translateX(26px);
-        }
+        } */
 
         /* Rounded sliders */
-        .slider.round {
+        /* .slider.round {
             border-radius: 34px;
         }
 
         .slider.round:before {
             border-radius: 50%;
-        }
+        } */
     </style>
 </head>
 
@@ -289,33 +289,19 @@ try {
             }
         }
 
-        let input = document.querySelector(".input");
-        let button = document.querySelector(".button");
-        button.disabled = true;
-        input.addEventListener("change", stateHandle);
+        // let input = document.querySelector(".input");
+        // let button = document.querySelector(".button");
+        // button.disabled = true;
+        // input.addEventListener("change", stateHandle);
 
-        function stateHandle() {
-            if (document.querySelector(".input").value === "") {
-                button.disabled = true;
-            } else {
-                button.disabled = false;
-            }
-        }
-
-        // 啟用/禁用
-        // $(document).ready(function() {
-        //     var publish = <?php echo "$is_publish" ?>;
-        //     if (publish == 0) {
-        //         $("#publish").prop("checked", '');
+        // function stateHandle() {
+        //     if (document.querySelector(".input").value === "") {
+        //         button.disabled = true;
         //     } else {
-        //         $("#publish").prop("checked", true);
+        //         button.disabled = false;
         //     }
-        // });
-
-        // function check_publish() {
-        //     if ($("#publish").is(':checked'))
-        //         $("#publish").val('1');
         // }
+
     </script>
 </body>
 
