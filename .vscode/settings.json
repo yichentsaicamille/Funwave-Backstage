@@ -1,0 +1,8 @@
+{
+    // 藍毛衣
+    "workbench.colorCustomizations": {
+                "activityBar.background": "#3c6e71",
+                "titleBar.activeBackground": "#284b63",
+                "titleBar.activeForeground": "#d9d9d9"
+            }
+}
